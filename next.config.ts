@@ -1,7 +1,12 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  images: {
+    qualities: [75, 90, 100],
+    remotePatterns: [
+      { protocol: "https", hostname: "www.mentorsportsintug.com" },
+    ],
+  },
 };
 
 export default nextConfig;
