@@ -37,7 +37,7 @@ export default function PageLoader() {
       className={`page-loader ${fadeOut ? "page-loader-out" : ""}`}
       aria-hidden={fadeOut}
     >
-      <SoccerJuggleLoader size="lg" label="Loading academy" />
+      <SoccerJuggleLoader size="md" label="Loading academy" />
     </div>
   );
 }

@@ -1,9 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { User, ChevronDown } from "lucide-react";
+import { ChevronDown, X } from "lucide-react";
 import { mainNavItems, navMegaMenus } from "@/data/content";
 import Logo from "@/components/Logo";
 import NavMegaItem from "@/components/NavMegaItem";
@@ -14,13 +15,23 @@ export default function Header() {
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
   const [openMenu, setOpenMenu] = useState<string | null>(null);
+  const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
 
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
+  const closeMenu = useCallback(() => {
+    setMenuOpen(false);
+    setMobileExpanded(null);
+  }, []);
+
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 12);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -35,171 +46,200 @@ export default function Header() {
 
   useEffect(() => {
     setOpenMenu(null);
-    setMenuOpen(false);
-  }, [pathname]);
+    closeMenu();
+  }, [pathname, closeMenu]);
 
-  const closeMenu = () => setMenuOpen(false);
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") closeMenu();
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [menuOpen, closeMenu]);
+
   const activeMegaMenu = openMenu ? navMegaMenus[openMenu] ?? null : null;
+  const headerHeight = scrolled ? 60 : 64;
 
-  const headerHeight = scrolled ? 64 : 72;
+  const mobileMenu = mounted
+    ? createPortal(
+        <>
+          <div
+            className={`mobile-menu-backdrop ${menuOpen ? "mobile-menu-backdrop-open" : ""}`}
+            onClick={closeMenu}
+            aria-hidden={!menuOpen}
+          />
+          <aside
+            id="mobile-navigation"
+            className={`mobile-menu-drawer ${menuOpen ? "mobile-menu-drawer-open" : ""}`}
+            aria-hidden={!menuOpen}
+          >
+            <div className="mobile-menu-header">
+              <Logo showText height={36} />
+              <button
+                type="button"
+                onClick={closeMenu}
+                className="mobile-menu-close"
+                aria-label="Close menu"
+              >
+                <X size={22} />
+              </button>
+            </div>
+
+            <nav className="mobile-menu-nav">
+              {mainNavItems.map((link, i) => {
+                const mega = navMegaMenus[link.href];
+                const expanded = mobileExpanded === link.href;
+
+                return (
+                  <div
+                    key={link.href}
+                    className={`mobile-menu-group ${menuOpen ? "mobile-menu-group-visible" : ""}`}
+                    style={{ transitionDelay: menuOpen ? `${i * 45}ms` : "0ms" }}
+                  >
+                    <div className="mobile-menu-row">
+                      <Link
+                        href={link.href}
+                        onClick={closeMenu}
+                        className={`mobile-menu-link ${isActive(link.href) ? "mobile-menu-link-active" : ""}`}
+                      >
+                        {link.label}
+                      </Link>
+                      {mega && (
+                        <button
+                          type="button"
+                          onClick={() =>
+                            setMobileExpanded(expanded ? null : link.href)
+                          }
+                          className="mobile-menu-expand"
+                          aria-expanded={expanded}
+                          aria-label={`Show ${link.label} links`}
+                        >
+                          <ChevronDown
+                            size={18}
+                            className={expanded ? "rotate-180" : ""}
+                          />
+                        </button>
+                      )}
+                    </div>
+
+                    {mega && expanded && (
+                      <div className="mobile-menu-sub">
+                        {mega.subLinks.map((sub) => (
+                          <Link
+                            key={sub.label}
+                            href={sub.href}
+                            onClick={closeMenu}
+                            className="mobile-menu-sublink"
+                          >
+                            {sub.label}
+                          </Link>
+                        ))}
+                        <div className="mobile-menu-featured">
+                          {mega.featured.map((card) => (
+                            <Link
+                              key={card.title}
+                              href={card.href}
+                              onClick={closeMenu}
+                              className="mobile-menu-featured-card"
+                            >
+                              {card.title}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </nav>
+
+            <div className="mobile-menu-footer">
+              <Link href="/trials" onClick={closeMenu} className="btn-primary w-full justify-center">
+                Book Trials
+              </Link>
+              <Link href="/contact" onClick={closeMenu} className="mobile-menu-contact">
+                Contact the academy
+              </Link>
+            </div>
+          </aside>
+        </>,
+        document.body
+      )
+    : null;
 
   return (
-    <header
-      className={`site-header sticky top-0 z-50 transition-all duration-300 ${
-        scrolled ? "site-header-scrolled" : ""
-      }`}
-    >
-      {/* Main bar — logo + burger | nav links | account */}
-      <div
-        className="relative"
-        onMouseLeave={() => setOpenMenu(null)}
+    <>
+      <header
+        className={`site-header sticky top-0 z-[100] transition-all duration-300 ${
+          scrolled ? "site-header-scrolled" : ""
+        }`}
       >
-        <div className="max-w-7xl mx-auto px-4 lg:px-6">
+        <div className="relative hidden lg:block" onMouseLeave={() => setOpenMenu(null)}>
+          <div className="max-w-7xl mx-auto px-4 lg:px-6">
+            <div
+              className="flex items-center justify-between transition-all duration-300"
+              style={{ height: headerHeight }}
+            >
+              <Logo height={scrolled ? 40 : 44} />
+
+              <nav className="flex items-center justify-center gap-0.5 flex-1 px-6">
+                {mainNavItems.map((link) => (
+                  <NavMegaItem
+                    key={link.href}
+                    href={link.href}
+                    label={link.label}
+                    active={isActive(link.href)}
+                    open={openMenu === link.href}
+                    onEnter={() => setOpenMenu(link.href)}
+                  />
+                ))}
+              </nav>
+
+              <div className="flex items-center gap-2 shrink-0">
+                <Link href="/trials" className="btn-primary !py-2.5 !px-4 !text-xs">
+                  Book Trials
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          <MegaMenuPanel menu={activeMegaMenu} visible={!!openMenu} />
+        </div>
+
+        {/* Mobile bar */}
+        <div className="lg:hidden max-w-7xl mx-auto px-4">
           <div
-            className="flex items-center justify-between transition-all duration-300"
+            className="flex items-center justify-between gap-3"
             style={{ height: headerHeight }}
           >
-            {/* Left: crest + hamburger */}
-            <div className="flex items-center gap-3 shrink-0">
-              <Logo showText={false} height={scrolled ? 40 : 44} />
+            <Logo showText={false} height={38} />
+
+            <div className="flex items-center gap-2">
+              <Link
+                href="/trials"
+                className="btn-primary !py-2 !px-3 !text-[10px] !rounded-lg sm:!text-xs sm:!px-4"
+              >
+                Trials
+              </Link>
               <button
-                onClick={() => setMenuOpen(!menuOpen)}
-                className="burger-btn flex flex-col justify-center items-center w-10 h-10 gap-[5px]"
+                type="button"
+                onClick={() => setMenuOpen((open) => !open)}
+                className="burger-btn"
                 aria-label={menuOpen ? "Close menu" : "Open menu"}
                 aria-expanded={menuOpen}
+                aria-controls="mobile-navigation"
               >
                 <span className={`burger-line ${menuOpen ? "burger-line-top-open" : ""}`} />
                 <span className={`burger-line ${menuOpen ? "burger-line-mid-open" : ""}`} />
                 <span className={`burger-line ${menuOpen ? "burger-line-bot-open" : ""}`} />
               </button>
             </div>
-
-            {/* Center: horizontal nav (desktop) */}
-            <nav className="hidden lg:flex items-center justify-center gap-0.5 flex-1 px-6">
-              {mainNavItems.map((link) => (
-                <NavMegaItem
-                  key={link.href}
-                  href={link.href}
-                  label={link.label}
-                  active={isActive(link.href)}
-                  open={openMenu === link.href}
-                  onEnter={() => setOpenMenu(link.href)}
-                />
-              ))}
-            </nav>
-
-            {/* Right: trials + account */}
-            <div className="flex items-center gap-2 shrink-0">
-              <Link
-                href="/trials"
-                className="hidden md:inline-flex btn-primary !py-2.5 !px-4 !text-xs"
-              >
-                Book Trials
-              </Link>
-              <button
-                className="p-2 text-ms-text hover:text-ms-blue transition-colors rounded-full hover:bg-ms-surface"
-                aria-label="Account"
-              >
-                <User size={22} strokeWidth={1.5} />
-              </button>
-            </div>
           </div>
         </div>
+      </header>
 
-        <MegaMenuPanel menu={activeMegaMenu} visible={!!openMenu} />
-      </div>
-
-      {/* Full menu overlay (burger tap — all screen sizes) */}
-      <div
-        className={`menu-overlay fixed inset-x-0 bottom-0 top-[72px] bg-white z-40 transition-all duration-300 shadow-2xl ${
-          menuOpen
-            ? "opacity-100 visible pointer-events-auto"
-            : "opacity-0 invisible pointer-events-none"
-        } ${scrolled ? "!top-16" : ""}`}
-      >
-        <nav className="h-full overflow-y-auto px-6 py-6 max-w-7xl mx-auto">
-          {mainNavItems.map((link, i) => {
-            const mega = navMegaMenus[link.href];
-            const expanded = mobileExpanded === link.href;
-
-            return (
-              <div
-                key={link.href}
-                className={`mobile-nav-item border-b border-ms-border ${
-                  menuOpen ? "mobile-nav-item-visible" : ""
-                }`}
-                style={{ transitionDelay: menuOpen ? `${i * 40}ms` : "0ms" }}
-              >
-                <div className="flex items-center justify-between">
-                  <Link
-                    href={link.href}
-                    onClick={closeMenu}
-                    className={`py-4 text-base font-semibold ${
-                      isActive(link.href) ? "text-ms-red" : "text-ms-text"
-                    }`}
-                  >
-                    {link.label}
-                  </Link>
-                  {mega && (
-                    <button
-                      onClick={() =>
-                        setMobileExpanded(expanded ? null : link.href)
-                      }
-                      className="p-2 text-ms-text-muted"
-                      aria-label={`Expand ${link.label}`}
-                    >
-                      <ChevronDown
-                        size={18}
-                        className={`transition-transform ${expanded ? "rotate-180" : ""}`}
-                      />
-                    </button>
-                  )}
-                </div>
-
-                {mega && expanded && (
-                  <div className="pb-4 pl-1 grid sm:grid-cols-2 gap-4 animate-fade-in-up">
-                    <div className="space-y-1">
-                      {mega.subLinks.map((sub) => (
-                        <Link
-                          key={sub.label}
-                          href={sub.href}
-                          onClick={closeMenu}
-                          className="block py-2 text-sm text-ms-text-muted hover:text-ms-blue transition-colors"
-                        >
-                          {sub.label}
-                        </Link>
-                      ))}
-                    </div>
-                    <div className="grid grid-cols-2 gap-2">
-                      {mega.featured.map((card) => (
-                        <Link
-                          key={card.title}
-                          href={card.href}
-                          onClick={closeMenu}
-                          className="text-xs font-medium text-ms-blue hover:text-ms-red transition-colors p-2 rounded-lg bg-ms-off-white"
-                        >
-                          {card.title}
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-            );
-          })}
-
-          <Link
-            href="/trials"
-            onClick={closeMenu}
-            className={`mt-6 block text-center bg-ms-red text-white py-3.5 font-semibold text-sm hover:bg-ms-red-dark transition-colors rounded-lg mobile-nav-item ${
-              menuOpen ? "mobile-nav-item-visible" : ""
-            }`}
-            style={{ transitionDelay: menuOpen ? "320ms" : "0ms" }}
-          >
-            Book Trials
-          </Link>
-        </nav>
-      </div>
-    </header>
+      {mobileMenu}
+    </>
   );
 }
