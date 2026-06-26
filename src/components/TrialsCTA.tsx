@@ -20,7 +20,7 @@ export default function TrialsCTA() {
           Book Your Trials
         </h2>
         <p className="text-white/85 text-lg mb-2 max-w-2xl mx-auto leading-relaxed">
-          Open trials for talented players aged 3–18+. Take the first step
+          Open trials for talented players aged 3–17. Take the first step
           towards becoming a professional footballer.
         </p>
         <p className="text-white/55 text-sm mb-10">

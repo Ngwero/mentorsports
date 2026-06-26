@@ -7,7 +7,7 @@ import Logo from "@/components/Logo";
 export default function Footer() {
   return (
     <footer className="footer-dark">
-      <div className="max-w-7xl mx-auto px-4 py-16">
+      <div className="site-container py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           <div className="lg:col-span-1">
             <div className="mb-4">
@@ -120,18 +120,17 @@ export default function Footer() {
                   {siteConfig.phoneOffice}
                 </a>
               </li>
-              <li>
-                <a
-                  href={`tel:${siteConfig.phoneMobile2.replace(/\s/g, "")}`}
-                  className="flex items-start gap-2 text-sm text-white/60 hover:text-white transition-colors"
-                >
-                  <Phone size={16} className="mt-0.5 shrink-0 text-ms-red" />
-                  {siteConfig.phoneMobile2}
-                </a>
-              </li>
               <li className="flex items-start gap-2 text-sm text-white/60">
                 <MapPin size={16} className="mt-0.5 shrink-0 text-ms-red" />
                 <span>
+                  <span className="block text-xs uppercase tracking-wider mb-1">Training</span>
+                  {siteConfig.trainingVenue}
+                </span>
+              </li>
+              <li className="flex items-start gap-2 text-sm text-white/60">
+                <MapPin size={16} className="mt-0.5 shrink-0 text-ms-red opacity-0" aria-hidden />
+                <span>
+                  <span className="block text-xs uppercase tracking-wider mb-1">Office</span>
                   {siteConfig.address}
                   <br />
                   {siteConfig.poBox}

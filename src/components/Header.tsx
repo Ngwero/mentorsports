@@ -176,7 +176,7 @@ export default function Header() {
         }`}
       >
         <div className="relative hidden lg:block" onMouseLeave={() => setOpenMenu(null)}>
-          <div className="max-w-7xl mx-auto px-4 lg:px-6">
+          <div className="site-container">
             <div
               className="flex items-center justify-between transition-all duration-300"
               style={{ height: headerHeight }}
@@ -208,7 +208,7 @@ export default function Header() {
         </div>
 
         {/* Mobile bar */}
-        <div className="lg:hidden max-w-7xl mx-auto px-4">
+        <div className="lg:hidden site-container">
           <div
             className="flex items-center justify-between gap-3"
             style={{ height: headerHeight }}

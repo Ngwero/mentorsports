@@ -25,17 +25,24 @@ export const academyImages = {
   firstAidPitch: "/images/academy/24-first-aid-pitch.webp",
   kisasaZoneTeam: "/images/academy/25-kisasa-zone-team.webp",
   leadershipOnPitch: "/images/academy/26-leadership-on-pitch.webp",
+  founderCoaching: "/images/academy/27-founder-coaching.webp",
+  girlsTraining: "/images/academy/28-girls-training.webp",
   heroBlueTeamFull: "/images/academy/hero-raw.png",
   heroCharityTeam: "/images/academy/23-charity-academy-team.webp",
   heroFirstAid: "/images/academy/24-first-aid-pitch.webp",
   heroPlayersSeated: "/images/academy/20-players-seated-line.webp",
+  phangNgaUnited: "/images/partners/phang-nga-united.webp",
 } as const;
+
+export const trainingVenue = "Centenary Turf Sports Complex, Kampala";
 
 export const academyGallery = [
   { src: academyImages.teamBlueGroup, alt: "Mentor Sports team photo in blue kits with coaches" },
   { src: academyImages.charityAcademyTeam, alt: "Youth teams and coaches at a Chipkizi Cup tournament" },
   { src: academyImages.kisasaZoneTeam, alt: "Kisasa Zone squad posing with coaches on the pitch" },
   { src: academyImages.leadershipOnPitch, alt: "Academy leadership and staff on the tournament pitch" },
+  { src: academyImages.founderCoaching, alt: "Mentor Sports founder coaching on the training pitch" },
+  { src: academyImages.girlsTraining, alt: "Girls' squad training on the pitch in neon bibs" },
   { src: academyImages.playerPeaceSign, alt: "Academy player celebrating with a football on the pitch" },
   { src: academyImages.fourPlayersBalls, alt: "Four academy players seated with footballs" },
   { src: academyImages.playerPortrait, alt: "Academy player portrait on the pitch" },
@@ -67,12 +74,12 @@ export const siteConfig = {
   slogan: "Let The Feet Do The Talking",
   email: "info@mentorsportsintug.com",
   trialsEmail: "trials@mentorsportsintug.com",
-  phone: "+256 772 404 723",
-  phoneAlt: "0414 343 4903",
-  phoneOffice: "0414 343 490",
-  phoneMobile2: "+256 483 444 463",
-  address: "Plot 18 Namirembe Road, Kampala, Uganda",
-  poBox: "P.O. Box 6751",
+  phone: "+256 772 404723",
+  phoneAlt: "+256 765 386403",
+  phoneOffice: "+256 754 086624",
+  address: "Plot 6C, 7th Street Industrial Area, SMS House, Kampala, Uganda",
+  poBox: "P.O. Box 37672",
+  trainingVenue,
   founded: 2008,
   registered: 2019,
   socialLabel: "Mentor Sports Int",
@@ -81,7 +88,7 @@ export const siteConfig = {
   mission:
     "We will achieve the highest standards of learning and playing the game of football by providing access to a safe, fun-filled environment for children, according respect for diversity, winning the trust of parents, and promoting identification of talent for advanced placements.",
   intro:
-    "Mentor Sports International Academy provides skills and age-appropriate training for children ages 3–18+. This program is structured and geared towards development of football skills and abilities from early childhood to adulthood. We teach players not to limit their potential growth — our training has NO LIMIT.",
+    "Mentor Sports International Academy provides skills and age-appropriate training for children ages 3–17. This program is structured and geared towards development of football skills and abilities from early childhood through the teenage years. We teach players not to limit their potential growth — our training has NO LIMIT.",
   philosophy:
     "Our philosophy is that football is a taught discipline. We emphasise counselling, mentoring and teaching young children through play.",
   programSummary:
@@ -217,7 +224,7 @@ export const trainingSchedules: TrainingScheduleBlock[] = [
     audience: "Local curriculum & school holiday periods",
     days: ["Monday", "Thursday", "Friday"],
     time: "9:00 AM – 12:00 PM",
-    note: "During long school and public holidays, over one hundred children join daily sessions at our Bombo and Kawanda grounds.",
+    note: `During long school and public holidays, over one hundred children join sessions at ${trainingVenue}.`,
   },
 ];
 
@@ -233,31 +240,40 @@ export interface UpcomingEvent {
 
 export const upcomingEvents: UpcomingEvent[] = [
   {
+    id: "wsh-elite-2026",
+    title: "WSH Elite Cup 2026",
+    date: "2026-12-05T09:00:00+03:00",
+    location: trainingVenue,
+    description:
+      "International youth tournament featuring elite squads from across the region — a flagship event on the academy calendar.",
+    href: "/events",
+    featured: true,
+  },
+  {
     id: "chipkizi-2026",
     title: "Chipkizi Cup 2026",
     date: "2026-08-15T09:00:00+03:00",
-    location: "Bombo Academy Grounds",
+    location: trainingVenue,
     description:
       "East Africa's largest youth and grassroots football tournament returns — 168+ teams, 2,200+ players, boys and girls.",
     href: "/tournaments",
-    featured: true,
   },
   {
     id: "holiday-camp-jul",
     title: "July Holiday Training Camp",
     date: "2026-07-07T09:00:00+03:00",
-    location: "Bombo & Kawanda",
+    location: trainingVenue,
     description:
-      "Daily holiday sessions Monday, Thursday and Friday — 9:00 AM to midday for all age groups.",
+      "Holiday sessions Monday, Thursday and Friday — 9:00 AM to midday for all age groups.",
     href: "/programs",
   },
   {
     id: "open-trials",
     title: "Open Academy Trials",
     date: "2026-06-28T10:00:00+03:00",
-    location: "Bombo Academy Grounds",
+    location: trainingVenue,
     description:
-      "Open registration for boys and girls aged 3–18+. Book online or walk in on the day.",
+      "Open registration for boys and girls aged 3–17. Book online or walk in on the day.",
     href: "/trials",
   },
 ];
@@ -269,6 +285,7 @@ export interface LeadershipRole {
   reportsTo?: string;
   description: string;
   email?: string;
+  image?: string;
 }
 
 export const leadershipTeam: LeadershipRole[] = [
@@ -279,6 +296,7 @@ export const leadershipTeam: LeadershipRole[] = [
     description:
       "Provides strategic vision, academy governance, and international partnership development.",
     email: "info@mentorsportsintug.com",
+    image: academyImages.founderCoaching,
   },
   {
     id: "technical",
@@ -295,7 +313,7 @@ export const leadershipTeam: LeadershipRole[] = [
     department: "Administration",
     reportsTo: "founder",
     description:
-      "Manages registrations, parent communication, scheduling, and academy facilities at Bombo and Kawanda.",
+      "Manages registrations, parent communication, scheduling, and academy facilities at our Kampala training ground.",
     email: "admin@mentorsportsintug.com",
   },
   {
@@ -332,14 +350,12 @@ export const referralSources = [
 
 export const academyLocations = [
   {
-    name: "Bombo",
-    detail:
-      "Shanam Bombo High School playground, Bombo Town Council, Luwero District — our main academy home since late 2018.",
+    name: "Training Ground",
+    detail: `${trainingVenue} — home of daily academy training sessions.`,
   },
   {
-    name: "Kawanda",
-    detail:
-      "Extended branch opened to nurture young talent and bring Mentor Sports training to more communities.",
+    name: "Office",
+    detail: `${siteConfig.address}, ${siteConfig.poBox}.`,
   },
 ];
 
@@ -488,7 +504,7 @@ export const navMegaMenus: Record<string, NavMegaMenu> = {
     featured: [
       {
         title: "Register for Trials",
-        subtitle: "Ages 3–18+ welcome",
+        subtitle: "Ages 3–17 welcome",
         href: "/trials",
         image: academyImages.playerPortrait,
         dark: true,
@@ -620,7 +636,7 @@ export const heroSection = {
   title: "Where talent becomes",
   titleAccent: "greatness",
   subtitle:
-    "Professional youth football for ages 3–18+. Structured training, global pathways, and a club culture built to last.",
+    "Professional youth football for ages 3–17. Structured training, global pathways, and a club culture built to last.",
   cta: {
     primary: { label: "Book Trials", href: "/trials" },
     secondary: { label: "Explore Programs", href: "/programs" },
@@ -629,7 +645,7 @@ export const heroSection = {
   imageAlt: "Mentor Sports International Academy team on the pitch",
   stats: [
     { value: "2008", label: "Founded" },
-    { value: "3–18+", label: "Age Groups" },
+    { value: "3–17", label: "Age Groups" },
     { value: "UYFA", label: "Registered" },
   ],
   highlights: [
@@ -639,13 +655,92 @@ export const heroSection = {
   ],
 };
 
+export interface HeroCarouselSlide {
+  id: number;
+  eyebrow: string;
+  title: string;
+  titleAccent?: string;
+  subtitle: string;
+  image: string;
+  imageAlt: string;
+  href?: string;
+}
+
+export const heroCarouselSlides: HeroCarouselSlide[] = [
+  {
+    id: 1,
+    eyebrow: heroSection.eyebrow,
+    title: heroSection.title,
+    titleAccent: heroSection.titleAccent,
+    subtitle: heroSection.subtitle,
+    image: heroSection.image,
+    imageAlt: heroSection.imageAlt,
+    href: "/trials",
+  },
+  {
+    id: 2,
+    eyebrow: "Tournament",
+    title: "The Chipkizi Cup",
+    titleAccent: "East Africa's Largest",
+    subtitle:
+      "168 teams, 2,200 boys and girls from 4 African nations, 410+ games on 14 fields.",
+    image: academyImages.heroCharityTeam,
+    imageAlt: "Youth teams at the Chipkizi Cup tournament",
+    href: "/tournaments",
+  },
+  {
+    id: 3,
+    eyebrow: "Community",
+    title: "Safe football",
+    titleAccent: "for every child",
+    subtitle:
+      "Medical support, caring staff, and a welcoming environment at every academy event.",
+    image: academyImages.heroFirstAid,
+    imageAlt: "Medical staff ready on the tournament pitch",
+    href: "/events",
+  },
+  {
+    id: 4,
+    eyebrow: "Teams",
+    title: "Rising stars",
+    titleAccent: "every age group",
+    subtitle:
+      "From grassroots squads to competitive youth teams — let the feet do the talking.",
+    image: academyImages.heroPlayersSeated,
+    imageAlt: "Academy players seated on the pitch",
+    href: "/teams",
+  },
+  {
+    id: 5,
+    eyebrow: "Girls' Football",
+    title: "Inclusive training",
+    titleAccent: "for all players",
+    subtitle:
+      "Dedicated girls' squads with professional coaching and pathways to tournaments.",
+    image: academyImages.girlsTraining,
+    imageAlt: "Girls' squad training on the pitch",
+    href: "/teams",
+  },
+  {
+    id: 6,
+    eyebrow: "Leadership",
+    title: "Mentoring future",
+    titleAccent: "professionals",
+    subtitle:
+      "Our founder and coaching team share the vision behind Uganda's next generation of footballers.",
+    image: academyImages.founderCoaching,
+    imageAlt: "Mentor Sports founder coaching on the training pitch",
+    href: "/about",
+  },
+];
+
 export const heroSlides = [
   {
     id: 1,
     category: "Academy",
     title: "Mentoring Future Professional Footballers",
     subtitle:
-      "Skills and age-appropriate training for ages 3–18+. Our training has NO LIMIT.",
+      "Skills and age-appropriate training for ages 3–17. Our training has NO LIMIT.",
     image: academyImages.heroBlueTeamFull,
     href: "/about",
   },
@@ -677,16 +772,23 @@ export const heroSlides = [
   },
 ];
 
+export const founderVideo = {
+  youtubeId: "Fgy2ZsJjiis",
+  youtubeUrl: "https://www.youtube.com/watch?v=Fgy2ZsJjiis",
+  title: "A word from the Founder",
+  duration: "2m 15s",
+};
+
 export const newsArticles = [
   {
     id: 1,
     category: "Partnership",
     time: "Featured",
-    title: "Latest Partnership: Mentor Sports | Phang United",
+    title: "Latest Partnership: Mentor Sports | Phang Nga United",
     excerpt:
       "A new international partnership strengthening youth development and cross-border football opportunities.",
-    image: academyImages.academyVictoryBanner,
-    featured: true,
+    image: academyImages.phangNgaUnited,
+    imageFit: "contain" as const,
   },
   {
     id: 2,
@@ -695,7 +797,9 @@ export const newsArticles = [
     title: "A word from the Founder",
     excerpt:
       "Our founder shares the vision behind nurturing Uganda's next generation of professional footballers.",
-    image: academyImages.officialMedal006,
+    image: academyImages.founderCoaching,
+    imageAspect: "portrait" as const,
+    youtubeUrl: founderVideo.youtubeUrl,
   },
   {
     id: 3,
@@ -757,12 +861,12 @@ export const programs = [
   {
     id: 1,
     title: "Youth Programs",
-    description: "Year-round structured development for boys and girls ages 3–18+",
+    description: "Year-round structured development for boys and girls ages 3–17",
     longDescription:
       "The academy is home to boys and girls across U9, U11, U13, U15 and U17 categories, each under mentorship of at least a pair of coaches. We conduct measured physical exercises, skills development and team play sessions tailored to every age group.",
     image: academyImages.coachTeamTalk,
     cta: "View Programs",
-    ages: "Ages 3–18+",
+    ages: "Ages 3–17",
     schedule: "Weekends & public holidays during term; daily in holidays",
   },
   {
@@ -774,7 +878,7 @@ export const programs = [
     image: academyImages.yellowTeamTrophy,
     cta: "Learn More",
     ages: "All age groups",
-    schedule: "9:00 AM – 12:00 Noon, daily during holidays",
+    schedule: "9:00 AM – 12:00 PM, Monday, Thursday & Friday during holidays",
   },
   {
     id: 3,
@@ -795,7 +899,7 @@ export const programs = [
       "Open trials for talented players seeking academy placement. Submit the trials application with player details, age, gender and preferred position. Our coaching staff assess technical ability, attitude and potential for placement in the right squad.",
     image: academyImages.playerPortrait,
     cta: "Book Trial",
-    ages: "U8–U18",
+    ages: "U8–U17",
     schedule: "By appointment",
   },
 ];
@@ -807,7 +911,7 @@ export const teams = [
     ageGroup: "U8–U10",
     description:
       "Foundation skills, ball mastery and fun-first learning for our youngest boys and girls.",
-    image: academyImages.fourPlayersBalls,
+    image: academyImages.playersResting,
   },
   {
     id: 2,
@@ -815,7 +919,7 @@ export const teams = [
     ageGroup: "U11–U12",
     description:
       "Technical development and small-sided games building confidence and game understanding.",
-    image: academyImages.playersResting,
+    image: academyImages.fourPlayersBalls,
   },
   {
     id: 3,
@@ -835,10 +939,10 @@ export const teams = [
   },
   {
     id: 5,
-    name: "Under 17–18 Team",
-    ageGroup: "U17–U18",
+    name: "Under 17 Team",
+    ageGroup: "U17",
     description:
-      "Elite squad preparing senior players for club trials, scholarships and professional careers.",
+      "Elite squad preparing senior youth players for club trials, scholarships and professional careers.",
     image: academyImages.playerPortrait,
   },
   {
@@ -847,7 +951,7 @@ export const teams = [
     ageGroup: "All ages",
     description:
       "Dedicated girls' squads across every age category — inclusive, professional training with visible pathways to tournaments and scholarships.",
-    image: academyImages.mentorOfficial005,
+    image: academyImages.girlsTraining,
   },
   {
     id: 7,
@@ -875,9 +979,10 @@ export const videos = [
   },
   {
     id: 2,
-    title: "A word from The Founder",
-    duration: "2m 15s",
-    image: academyImages.officialMedal006,
+    title: founderVideo.title,
+    duration: founderVideo.duration,
+    image: academyImages.founderCoaching,
+    youtubeUrl: founderVideo.youtubeUrl,
   },
   {
     id: 3,
@@ -915,10 +1020,11 @@ export interface Partner {
 
 export const partners: Partner[] = [
   {
-    name: "Phang United",
+    name: "Phang Nga United",
     type: "International Club",
     description:
       "Cross-border partnership connecting Mentor Sports players with international club pathways and exchange programmes.",
+    href: "https://www.phangngaunitedfc.com/",
   },
   {
     name: "UYFA",
@@ -958,7 +1064,7 @@ export const trialSteps = [
     step: 3,
     title: "Attend Trial Session",
     description:
-      "Join an open trial at our Bombo or Kawanda academy grounds.",
+      `Join an open trial at ${trainingVenue}.`,
   },
   {
     step: 4,
@@ -1016,7 +1122,7 @@ export const faqItems: FaqItem[] = [
     id: "ages",
     question: "What age groups do you train?",
     answer:
-      "We train boys and girls from ages 3–18+. Squads include Under 8–10, Under 11–12, Under 13–14, Under 15–16, and Under 17–18. Each age category is mentored by at least a pair of coaches.",
+      "We train boys and girls from ages 3–17. Squads include Under 8–10, Under 11–12, Under 13–14, Under 15–16, and Under 17. Each age category is mentored by at least a pair of coaches.",
     phrases: [
       "how old",
       "minimum age",
@@ -1060,7 +1166,7 @@ export const faqItems: FaqItem[] = [
     id: "location",
     question: "Where are you located?",
     answer:
-      "Our main training ground is at Shanam Bombo High School playground, Bombo Town Council, Luwero District (since late 2018). We also have a branch in Kawanda. Our office address is Plot 18 Namirembe Road, Kampala, P.O. Box 6751.",
+      `Our main training ground is at ${trainingVenue}. Our office is at ${siteConfig.address}, ${siteConfig.poBox}.`,
     phrases: [
       "where are you",
       "where is the academy",
@@ -1182,7 +1288,7 @@ export const faqItems: FaqItem[] = [
     id: "contact",
     question: "How can I contact the academy?",
     answer:
-      "Email info@mentorsportsintug.com for general enquiries or trials@mentorsportsintug.com for trials. Call +256 772 404 723, 0414 343 4903, 0414 343 490, or +256 483 444 463. Office: Plot 18 Namirembe Road, Kampala, P.O. Box 6751.",
+      `Email info@mentorsportsintug.com for general enquiries or trials@mentorsportsintug.com for trials. Call ${siteConfig.phone}, ${siteConfig.phoneAlt}, or ${siteConfig.phoneOffice}. Office: ${siteConfig.address}, ${siteConfig.poBox}.`,
     phrases: [
       "phone number",
       "email address",
@@ -1248,7 +1354,7 @@ export const faqItems: FaqItem[] = [
     id: "girls",
     question: "Do you train girls?",
     answer:
-      "Yes! The academy is home to both boys and girls across all age categories. We welcome all children ages 3–18+ with inclusive, professional training for everyone.",
+      "Yes! The academy is home to both boys and girls across all age categories. We welcome all children ages 3–17 with inclusive, professional training for everyone.",
     phrases: [
       "girls academy",
       "women academy",

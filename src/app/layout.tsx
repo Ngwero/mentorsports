@@ -16,7 +16,7 @@ const dmSans = DM_Sans({
 export const metadata: Metadata = {
   title: `${siteConfig.name} | ${siteConfig.tagline}`,
   description:
-    "Mentor Sports International Academy provides skills and age-appropriate football training for children ages 3-18+ in Uganda. Registered by UYFA. Book your trials today.",
+    "Mentor Sports International Academy provides skills and age-appropriate football training for children ages 3-17 in Uganda. Registered by UYFA. Book your trials today.",
   keywords: [
     "football academy Uganda",
     "youth football",
@@ -42,7 +42,7 @@ export default function RootLayout({
       <body className={`${dmSans.variable} font-sans antialiased`}>
         <PageLoader />
         <Header />
-        <main className="overflow-x-hidden">{children}</main>
+        <main className="overflow-x-hidden w-full">{children}</main>
         <Footer />
         <FaqChatbot />
       </body>

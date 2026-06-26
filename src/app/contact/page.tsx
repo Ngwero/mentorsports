@@ -77,6 +77,7 @@ export default function ContactPage() {
                           {siteConfig.phone}
                         </p>
                         <p className="text-sm text-ms-text-muted">{siteConfig.phoneAlt}</p>
+                        <p className="text-sm text-ms-text-muted">{siteConfig.phoneOffice}</p>
                       </div>
                     </a>
                   </li>
@@ -84,28 +85,20 @@ export default function ContactPage() {
                     <MapPin size={20} className="mt-0.5 shrink-0 text-ms-red" />
                     <div>
                       <p className="text-xs uppercase tracking-wider text-ms-text-muted mb-0.5">
-                        Address
+                        Training Ground
+                      </p>
+                      <p>{siteConfig.trainingVenue}</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-3 text-ms-text-muted">
+                    <MapPin size={20} className="mt-0.5 shrink-0 text-ms-red opacity-0" aria-hidden />
+                    <div>
+                      <p className="text-xs uppercase tracking-wider text-ms-text-muted mb-0.5">
+                        Office
                       </p>
                       <p>{siteConfig.address}</p>
                       <p className="text-sm mt-1">{siteConfig.poBox}</p>
                     </div>
-                  </li>
-                  <li>
-                    <a
-                      href={`tel:${siteConfig.phoneOffice.replace(/\s/g, "")}`}
-                      className="flex items-start gap-3 text-ms-text-muted hover:text-ms-blue transition-colors group"
-                    >
-                      <Phone size={20} className="mt-0.5 shrink-0 text-ms-red" />
-                      <div>
-                        <p className="text-xs uppercase tracking-wider text-ms-text-muted mb-0.5">
-                          Office Line
-                        </p>
-                        <p className="group-hover:text-ms-blue transition-colors">
-                          {siteConfig.phoneOffice}
-                        </p>
-                        <p className="text-sm">{siteConfig.phoneMobile2}</p>
-                      </div>
-                    </a>
                   </li>
                   <li className="flex items-start gap-3 text-ms-text-muted">
                     <MapPin size={20} className="mt-0.5 shrink-0 text-ms-red opacity-0" aria-hidden />

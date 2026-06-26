@@ -14,7 +14,7 @@ export default function Newsletter() {
   };
 
   return (
-    <section className="section-modern max-w-7xl mx-auto px-4">
+    <section className="section-modern w-full site-container">
       <div className="relative overflow-hidden rounded-2xl border border-ms-border bg-gradient-to-br from-ms-off-white to-white p-8 md:p-12 shadow-sm">
         <div
           className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-ms-red/5 blur-3xl"

@@ -10,7 +10,7 @@ import { programs, siteConfig, academyImages } from "@/data/content";
 export const metadata: Metadata = {
   title: "Programs | Mentor Sports International Academy",
   description:
-    "Holiday programs, youth development, and academy trials for players aged 3–18+.",
+    "Holiday programs, youth development, and academy trials for players aged 3–17.",
 };
 
 export default function ProgramsPage() {

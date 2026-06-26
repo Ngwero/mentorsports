@@ -8,7 +8,6 @@ import PricingSection from "@/components/PricingSection";
 import PartnershipsSection from "@/components/PartnershipsSection";
 import TrialsCTA from "@/components/TrialsCTA";
 import Newsletter from "@/components/Newsletter";
-import VideoSection from "@/components/VideoSection";
 import ScrollReveal from "@/components/ScrollReveal";
 import { programs, teams, videos } from "@/data/content";
 
@@ -34,18 +33,13 @@ export default function Home() {
             items={programs}
             variant="card"
             viewAllHref="/programs"
+            autoScroll
           />
         </section>
       </ScrollReveal>
 
       <ScrollReveal>
         <TrialsCTA />
-      </ScrollReveal>
-
-      <ScrollReveal delay={80}>
-        <section className="section-modern section-surface">
-          <VideoSection />
-        </section>
       </ScrollReveal>
 
       <ScrollReveal delay={80}>
@@ -57,6 +51,7 @@ export default function Home() {
             items={videos}
             variant="video"
             viewAllHref="/teams"
+            autoScroll
           />
         </section>
       </ScrollReveal>

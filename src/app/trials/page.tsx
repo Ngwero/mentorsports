@@ -10,7 +10,7 @@ import { siteConfig, trialSteps, academyImages } from "@/data/content";
 export const metadata: Metadata = {
   title: "Trials | Mentor Sports International Academy",
   description:
-    "Book your academy trials for players aged 3–18+. Register online today.",
+    "Book your academy trials for players aged 3–17. Register online today.",
 };
 
 export default function TrialsPage() {
@@ -18,7 +18,7 @@ export default function TrialsPage() {
     <>
       <PageHero
         title="Book Your Trials"
-        subtitle="Open trials for talented players aged 3–18+. Take the first step towards becoming a professional footballer."
+        subtitle="Open trials for talented players aged 3–17. Take the first step towards becoming a professional footballer."
         image={academyImages.playerPortrait}
         category="Registration"
       />

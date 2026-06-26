@@ -1,4 +1,5 @@
 import { Mail } from "lucide-react";
+import AcademyImage from "@/components/AcademyImage";
 import { leadershipTeam } from "@/data/content";
 
 export default function LeadershipSection() {
@@ -65,6 +66,17 @@ function LeadershipCard({
           : "border-ms-border bg-white h-full"
       }`}
     >
+      {role.image && (
+        <div className="relative aspect-[4/5] w-full max-w-[220px] mx-auto mb-4 rounded-xl overflow-hidden">
+          <AcademyImage
+            src={role.image}
+            alt={role.title}
+            fill
+            className="object-cover object-top"
+            sizes="220px"
+          />
+        </div>
+      )}
       <span className="text-xs font-bold uppercase tracking-widest text-ms-blue">
         {role.department}
       </span>

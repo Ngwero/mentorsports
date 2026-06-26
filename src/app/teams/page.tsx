@@ -68,6 +68,7 @@ export default function TeamsPage() {
           subtitle="Watch our squads in action"
           items={videos}
           variant="video"
+          autoScroll
         />
       </ScrollReveal>
     </>

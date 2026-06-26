@@ -9,7 +9,7 @@ interface PartnershipsSectionProps {
 
 export default function PartnershipsSection({ id }: PartnershipsSectionProps) {
   return (
-    <section id={id} className="section-modern max-w-7xl mx-auto px-4">
+    <section id={id} className="section-modern w-full site-container">
       <SectionHeader
         eyebrow="Global Network"
         title="Partnerships"

@@ -5,7 +5,7 @@ import { pricing } from "@/data/content";
 
 export default function PricingSection() {
   return (
-    <section className="section-modern section-surface max-w-7xl mx-auto px-4">
+    <section className="section-modern section-surface w-full site-container">
       <SectionHeader
         eyebrow="Membership & Fees"
         title="Academy Pricing"

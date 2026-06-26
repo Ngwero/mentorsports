@@ -9,7 +9,7 @@ export default function EventsSection() {
   const others = upcomingEvents.filter((event) => event.id !== featured.id);
 
   return (
-    <section className="section-modern max-w-7xl mx-auto px-4">
+    <section className="section-modern w-full site-container">
       <SectionHeader
         eyebrow="What's Next"
         title="Upcoming Events"

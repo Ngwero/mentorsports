@@ -1,24 +1,74 @@
+"use client";
+
+import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { ArrowUpRight, ChevronRight } from "lucide-react";
-import { heroSection } from "@/data/content";
+import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { heroCarouselSlides, heroSection } from "@/data/content";
 import SocialLinks from "@/components/SocialLinks";
 
+const SLIDE_INTERVAL_MS = 6000;
+
 export default function HeroCarousel() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const pausedRef = useRef(false);
+  const slideCount = heroCarouselSlides.length;
+  const slide = heroCarouselSlides[activeIndex];
+
+  const goTo = useCallback(
+    (index: number) => {
+      setActiveIndex((index + slideCount) % slideCount);
+    },
+    [slideCount]
+  );
+
+  const goNext = useCallback(() => {
+    goTo(activeIndex + 1);
+  }, [activeIndex, goTo]);
+
+  const goPrev = useCallback(() => {
+    goTo(activeIndex - 1);
+  }, [activeIndex, goTo]);
+
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReducedMotion || slideCount < 2) return;
+
+    const timer = window.setInterval(() => {
+      if (!pausedRef.current) {
+        setActiveIndex((current) => (current + 1) % slideCount);
+      }
+    }, SLIDE_INTERVAL_MS);
+
+    return () => window.clearInterval(timer);
+  }, [slideCount]);
+
   return (
-    <section className="hero-modern">
+    <section
+      className="hero-modern"
+      onMouseEnter={() => {
+        pausedRef.current = true;
+      }}
+      onMouseLeave={() => {
+        pausedRef.current = false;
+      }}
+    >
       <div className="hero-modern-grid">
         <div className="hero-modern-copy">
-          <div className="hero-modern-eyebrow">
-            <span className="hero-modern-eyebrow-bar" aria-hidden />
-            {heroSection.eyebrow}
+          <div key={slide.id} className="hero-slide-copy animate-fade-in-up">
+            <div className="hero-modern-eyebrow">
+              <span className="hero-modern-eyebrow-bar" aria-hidden />
+              {slide.eyebrow}
+            </div>
+
+            <h1 className="hero-modern-title">
+              {slide.title}{" "}
+              {slide.titleAccent && (
+                <span className="hero-modern-title-accent">{slide.titleAccent}</span>
+              )}
+            </h1>
+
+            <p className="hero-modern-subtitle">{slide.subtitle}</p>
           </div>
-
-          <h1 className="hero-modern-title">
-            {heroSection.title}{" "}
-            <span className="hero-modern-title-accent">{heroSection.titleAccent}</span>
-          </h1>
-
-          <p className="hero-modern-subtitle">{heroSection.subtitle}</p>
 
           <div className="hero-modern-stats">
             {heroSection.stats.map((stat) => (
@@ -34,8 +84,11 @@ export default function HeroCarousel() {
               {heroSection.cta.primary.label}
               <ChevronRight size={16} />
             </Link>
-            <Link href={heroSection.cta.secondary.href} className="btn-ghost">
-              {heroSection.cta.secondary.label}
+            <Link
+              href={slide.href ?? heroSection.cta.secondary.href}
+              className="btn-ghost"
+            >
+              {slide.href ? "Learn more" : heroSection.cta.secondary.label}
             </Link>
           </div>
 
@@ -45,11 +98,16 @@ export default function HeroCarousel() {
         <div className="hero-modern-visual">
           <div className="hero-modern-visual-accent" aria-hidden />
           <div className="hero-modern-image-wrap">
-            <img
-              src={heroSection.image}
-              alt={heroSection.imageAlt}
-              className="hero-modern-image"
-            />
+            {heroCarouselSlides.map((item, index) => (
+              <img
+                key={item.id}
+                src={item.image}
+                alt={item.imageAlt}
+                className={`hero-modern-image hero-carousel-image ${
+                  index === activeIndex ? "is-active" : ""
+                }`}
+              />
+            ))}
             <div className="hero-modern-image-shade" aria-hidden />
           </div>
 
@@ -64,6 +122,42 @@ export default function HeroCarousel() {
                 <ArrowUpRight size={13} className="opacity-60" />
               </Link>
             ))}
+          </div>
+
+          <div className="hero-carousel-controls">
+            <button
+              type="button"
+              onClick={goPrev}
+              className="hero-carousel-nav"
+              aria-label="Previous slide"
+            >
+              <ChevronLeft size={18} />
+            </button>
+
+            <div className="hero-carousel-dots" role="tablist" aria-label="Hero slides">
+              {heroCarouselSlides.map((item, index) => (
+                <button
+                  key={item.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={index === activeIndex}
+                  aria-label={`Go to slide ${index + 1}: ${item.eyebrow}`}
+                  onClick={() => goTo(index)}
+                  className={`hero-carousel-dot ${
+                    index === activeIndex ? "is-active" : ""
+                  }`}
+                />
+              ))}
+            </div>
+
+            <button
+              type="button"
+              onClick={goNext}
+              className="hero-carousel-nav"
+              aria-label="Next slide"
+            >
+              <ChevronRight size={18} />
+            </button>
           </div>
         </div>
       </div>

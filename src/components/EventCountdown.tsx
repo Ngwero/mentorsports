@@ -56,18 +56,17 @@ export default function EventCountdown({ targetDate }: EventCountdownProps) {
   ];
 
   return (
-    <div className="grid grid-cols-4 gap-2 md:gap-3">
+    <div className="flex flex-wrap items-center gap-3 md:gap-4">
       {units.map((unit) => (
         <div
           key={unit.label}
-          className="rounded-xl bg-ms-blue text-white px-2 py-3 md:px-3 md:py-4 text-center"
+          className="countdown-circle"
+          aria-label={`${unit.value} ${unit.label}`}
         >
-          <p className="text-xl md:text-3xl font-black tabular-nums">
+          <p className="countdown-circle-value">
             {String(unit.value).padStart(2, "0")}
           </p>
-          <p className="text-[10px] md:text-xs uppercase tracking-wider text-white/75 mt-1">
-            {unit.label}
-          </p>
+          <p className="countdown-circle-label">{unit.label}</p>
         </div>
       ))}
     </div>

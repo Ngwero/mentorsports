@@ -77,7 +77,7 @@ const GREETING_PATTERNS: { pattern: RegExp; response: string }[] = [
   {
     pattern: /^(who are you|what are you|what can you do|help me)/,
     response:
-      "I'm the Mentor Sports assistant. Ask me about age groups, trials, training schedules, locations in Bombo and Kawanda, programs, the Chipkizi Cup, fees, kit requirements, or how to contact us.",
+      "I'm the Mentor Sports assistant. Ask me about age groups, trials, training schedules, our Kampala training ground, programs, tournaments, fees, kit requirements, or how to contact us.",
   },
 ];
 
@@ -173,7 +173,7 @@ export function resolveQuestion(input: string): BotResponse {
 
   if (scored.length === 0) {
     return {
-      text: `I couldn't find an exact match, but our team can help directly. Mentor Sports trains ages 3–18+ at Bombo and Kawanda. Email ${siteConfig.email}, call ${siteConfig.phone}, or visit our contact page.`,
+      text: `I couldn't find an exact match, but our team can help directly. Mentor Sports trains ages 3–17 at ${siteConfig.trainingVenue}. Email ${siteConfig.email}, call ${siteConfig.phone}, or visit our contact page.`,
       link: { label: "Contact us", href: "/contact" },
       faqIds: [],
     };
