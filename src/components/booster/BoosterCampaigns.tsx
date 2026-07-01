@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import AcademyImage from "@/components/AcademyImage";
 import SectionHeader from "@/components/SectionHeader";
@@ -70,24 +69,13 @@ export default function BoosterCampaigns() {
                   </div>
                 </dl>
 
-                <div className="flex flex-col gap-2 mt-5">
-                  <Link
-                    href={`/booster-club?campaign=${campaign.id}#donate`}
-                    className="booster-campaign-donate btn-primary w-full"
-                  >
-                    Donate to this campaign
-                    <ArrowUpRight size={16} />
-                  </Link>
-                  <a
-                    href={getRukaPayPaymentUrl()}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 w-full py-2.5 text-sm font-semibold text-ms-blue hover:text-ms-blue-dark transition-colors"
-                  >
-                    Pay now via {boosterPaymentConfig.provider}
-                    <ArrowUpRight size={14} />
-                  </a>
-                </div>
+                <a
+                  href={getRukaPayPaymentUrl()}
+                  className="booster-campaign-donate btn-primary w-full mt-5"
+                >
+                  Donate via {boosterPaymentConfig.provider}
+                  <ArrowUpRight size={16} />
+                </a>
               </div>
             </article>
           );

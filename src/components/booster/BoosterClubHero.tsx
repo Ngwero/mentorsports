@@ -3,6 +3,7 @@ import { ArrowUpRight, Heart, Shield } from "lucide-react";
 import PageHero from "@/components/PageHero";
 import { academyImages } from "@/data/content";
 import { boosterClubContent, boosterPaymentConfig } from "@/data/boosterClub";
+import { getRukaPayPaymentUrl } from "@/lib/boosterClub";
 
 export default function BoosterClubHero() {
   return (
@@ -33,9 +34,9 @@ export default function BoosterClubHero() {
                   Support a Campaign
                   <ArrowUpRight size={16} />
                 </Link>
-                <Link href="#donate" className="btn-primary">
+                <a href={getRukaPayPaymentUrl()} className="btn-primary">
                   Donate Now
-                </Link>
+                </a>
               </div>
             </div>
 

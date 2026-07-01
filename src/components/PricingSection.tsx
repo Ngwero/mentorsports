@@ -65,8 +65,6 @@ export default function PricingSection() {
 
             <a
               href={academyPayment.url}
-              target="_blank"
-              rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 mt-6 w-full border border-ms-blue text-ms-blue px-5 py-2.5 font-bold text-sm rounded-xl hover:bg-ms-blue hover:text-white transition-colors"
             >
               Pay onboarding fee
@@ -110,8 +108,6 @@ export default function PricingSection() {
             </Link>
             <a
               href={academyPayment.url}
-              target="_blank"
-              rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 mt-3 w-full border border-ms-blue text-ms-blue px-6 py-3 font-bold text-sm rounded-xl hover:bg-ms-blue hover:text-white transition-colors"
             >
               Pay training fees
@@ -130,8 +126,6 @@ export default function PricingSection() {
         </div>
         <a
           href={academyPayment.url}
-          target="_blank"
-          rel="noopener noreferrer"
           className="inline-flex items-center justify-center gap-2 shrink-0 bg-ms-blue text-white px-6 py-3 font-bold text-sm rounded-xl hover:bg-ms-blue-dark transition-colors"
         >
           Pay via {academyPayment.provider}

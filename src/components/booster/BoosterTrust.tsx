@@ -14,8 +14,6 @@ export default function BoosterTrust() {
             Donations are processed securely through{" "}
             <a
               href={boosterPaymentConfig.url}
-              target="_blank"
-              rel="noopener noreferrer"
               className="text-ms-blue font-semibold hover:underline"
             >
               {boosterPaymentConfig.provider}

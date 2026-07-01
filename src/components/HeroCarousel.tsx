@@ -149,8 +149,6 @@ export default function HeroCarousel() {
           <aside className="hero-hub-fees-card">
             <a
               href={academyPayment.url}
-              target="_blank"
-              rel="noopener noreferrer"
               className="hero-hub-fees-compact"
             >
               <CreditCard className="hero-hub-fees-compact-icon" size={16} aria-hidden />
@@ -183,8 +181,6 @@ export default function HeroCarousel() {
               </ul>
               <a
                 href={academyPayment.url}
-                target="_blank"
-                rel="noopener noreferrer"
                 className="hero-hub-fees-cta"
               >
                 Pay via {academyPayment.provider}

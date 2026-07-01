@@ -567,7 +567,7 @@ export const navMegaMenus: Record<string, NavMegaMenu> = {
     href: "/booster-club",
     subLinks: [
       { label: "Active Campaigns", href: "/booster-club#campaigns" },
-      { label: "Donate Now", href: "/booster-club#donate" },
+      { label: "Donate Now", href: rukaPayPaymentUrl },
       { label: "Impact Ledger", href: "/booster-club#impact" },
       { label: "Booster Updates", href: "/booster-club#updates" },
     ],
@@ -575,13 +575,13 @@ export const navMegaMenus: Record<string, NavMegaMenu> = {
       {
         title: "Road to the Chipkizi Cup",
         subtitle: "Help squads travel and compete",
-        href: "/booster-club?campaign=chipkizi-cup#donate",
+        href: rukaPayPaymentUrl,
         image: academyImages.academyVictoryBanner,
       },
       {
         title: "Sponsor a Player",
         subtitle: "Support talent pathways",
-        href: "/booster-club?campaign=sponsor-player#donate",
+        href: rukaPayPaymentUrl,
         image: academyImages.playerPortrait,
         dark: true,
       },
