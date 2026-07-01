@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { Check } from "lucide-react";
+import { Check, ExternalLink } from "lucide-react";
 import SectionHeader from "@/components/SectionHeader";
-import { pricing } from "@/data/content";
+import { academyPayment, pricing } from "@/data/content";
 
 export default function PricingSection() {
   return (
@@ -62,6 +62,16 @@ export default function PricingSection() {
                 ))}
               </ul>
             )}
+
+            <a
+              href={academyPayment.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 mt-6 w-full border border-ms-blue text-ms-blue px-5 py-2.5 font-bold text-sm rounded-xl hover:bg-ms-blue hover:text-white transition-colors"
+            >
+              Pay onboarding fee
+              <ExternalLink size={14} />
+            </a>
           </div>
         ))}
 
@@ -90,16 +100,43 @@ export default function PricingSection() {
 
           <div className="mt-6 flex-1 flex flex-col justify-end">
             <p className="text-xs text-ms-text-muted leading-relaxed">
-              {pricing.paymentNote}
+              {academyPayment.referenceNote}
             </p>
             <Link
               href="/trials"
-              className="inline-flex justify-center mt-6 w-full bg-ms-red text-white px-6 py-3 font-bold text-sm uppercase tracking-wide rounded-xl hover:bg-ms-red-dark transition-colors"
+              className="inline-flex justify-center mt-4 w-full bg-ms-red text-white px-6 py-3 font-bold text-sm uppercase tracking-wide rounded-xl hover:bg-ms-red-dark transition-colors"
             >
               Register Now
             </Link>
+            <a
+              href={academyPayment.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 mt-3 w-full border border-ms-blue text-ms-blue px-6 py-3 font-bold text-sm rounded-xl hover:bg-ms-blue hover:text-white transition-colors"
+            >
+              Pay training fees
+              <ExternalLink size={15} />
+            </a>
           </div>
         </div>
+      </div>
+
+      <div className="mt-8 card-modern p-5 md:p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div>
+          <h3 className="font-bold text-lg">Pay membership & onboarding online</h3>
+          <p className="text-sm text-ms-text-muted mt-1 leading-relaxed max-w-2xl">
+            {pricing.paymentNote}
+          </p>
+        </div>
+        <a
+          href={academyPayment.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center justify-center gap-2 shrink-0 bg-ms-blue text-white px-6 py-3 font-bold text-sm rounded-xl hover:bg-ms-blue-dark transition-colors"
+        >
+          Pay via {academyPayment.provider}
+          <ExternalLink size={16} />
+        </a>
       </div>
     </section>
   );

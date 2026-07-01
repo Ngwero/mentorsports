@@ -850,6 +850,204 @@ body {
   }
 }
 
+/* ── Hero fees card ── */
+
+.hero-hub-fees-card {
+  position: absolute;
+  z-index: 4;
+  left: clamp(1rem, 3vw, 2rem);
+  bottom: clamp(4.5rem, 10vw, 5.5rem);
+  width: min(100% - 2rem, 19rem);
+  padding: 1.1rem 1.15rem;
+  border-radius: 1.25rem;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(14px);
+  color: var(--ms-text);
+  box-shadow: 0 20px 48px rgba(15, 23, 42, 0.16);
+}
+
+.hero-hub-fees-compact {
+  display: none;
+}
+
+.hero-hub-fees-desktop {
+  display: block;
+}
+
+.hero-hub-fees-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.65rem;
+}
+
+.hero-hub-fees-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ms-text-muted);
+}
+
+.hero-hub-fees-pill {
+  padding: 0.2rem 0.55rem;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: white;
+  background: var(--ms-blue);
+  border-radius: 9999px;
+}
+
+.hero-hub-fees-title {
+  font-size: 1rem;
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+.hero-hub-fees-list {
+  margin: 0.65rem 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: var(--ms-text-muted);
+}
+
+.hero-hub-fees-list li + li {
+  margin-top: 0.35rem;
+}
+
+.hero-hub-fees-list strong {
+  color: var(--ms-text);
+  font-weight: 800;
+}
+
+.hero-hub-fees-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  width: 100%;
+  margin-top: 0.85rem;
+  padding: 0.65rem 1rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: white;
+  background: var(--ms-blue);
+  border-radius: 9999px;
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 8px 24px rgba(27, 79, 138, 0.25);
+}
+
+.hero-hub-fees-cta:hover {
+  background: var(--ms-blue-dark);
+  transform: translateY(-1px);
+}
+
+.hero-hub-fees-link {
+  display: block;
+  margin-top: 0.55rem;
+  text-align: center;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--ms-blue);
+}
+
+.hero-hub-fees-link:hover {
+  color: var(--ms-red);
+}
+
+@media (max-width: 767px) {
+  .hero-hub-fees-card {
+    position: relative;
+    left: auto;
+    bottom: auto;
+    width: 100%;
+    padding: 0;
+    overflow: hidden;
+    background: var(--ms-white);
+    border: 1px solid var(--ms-border);
+    border-radius: 1rem;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+    backdrop-filter: none;
+  }
+
+  .hero-hub-fees-compact {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    width: 100%;
+    min-width: 0;
+    padding: 0.85rem 1rem;
+    color: inherit;
+    transition: background 0.2s ease;
+  }
+
+  .hero-hub-fees-compact:hover {
+    background: var(--ms-off-white);
+  }
+
+  .hero-hub-fees-compact-icon {
+    flex-shrink: 0;
+    color: var(--ms-blue);
+  }
+
+  .hero-hub-fees-compact-eyebrow {
+    flex-shrink: 0;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ms-text-muted);
+    white-space: nowrap;
+  }
+
+  .hero-hub-fees-compact-title {
+    flex: 1;
+    min-width: 0;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--ms-text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .hero-hub-fees-compact-arrow {
+    flex-shrink: 0;
+    color: var(--ms-red);
+  }
+
+  .hero-hub-fees-desktop {
+    display: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero-hub-fees-card {
+    position: absolute;
+  }
+
+  /* Stack cards vertically on medium screens when both overlap */
+  @media (max-width: 1100px) {
+    .hero-hub-fees-card {
+      bottom: auto;
+      top: clamp(1rem, 3vw, 2rem);
+      left: clamp(1rem, 3vw, 2rem);
+    }
+
+    .hero-hub-event-card {
+      bottom: clamp(1rem, 3vw, 2rem);
+    }
+  }
+}
+
 .hero-hub-event-header {
   display: flex;
   align-items: center;

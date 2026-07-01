@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Lock, Mail, Phone, Shield, Users } from "lucide-react";
 import { siteConfig } from "@/data/content";
-import { boosterClubContent } from "@/data/boosterClub";
+import { boosterClubContent, boosterPaymentConfig } from "@/data/boosterClub";
 
 export default function BoosterTrust() {
   return (
@@ -11,8 +11,16 @@ export default function BoosterTrust() {
           <Shield size={22} className="text-ms-blue mb-3" />
           <h3 className="font-bold text-lg">Secure payments</h3>
           <p className="text-sm text-ms-text-muted mt-2 leading-relaxed">
-            Donations will be processed through trusted gateways (Pesapal, Flutterwave, or Yo!
-            Payments). Card and Mobile Money details are encrypted during checkout.
+            Donations are processed securely through{" "}
+            <a
+              href={boosterPaymentConfig.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-ms-blue font-semibold hover:underline"
+            >
+              {boosterPaymentConfig.provider}
+            </a>
+            . Mobile Money and card details are handled on their encrypted checkout page.
           </p>
         </div>
 

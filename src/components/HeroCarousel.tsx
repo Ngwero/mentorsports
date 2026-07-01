@@ -2,8 +2,8 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { ArrowUpRight, CalendarDays, MapPin } from "lucide-react";
-import { heroCarouselSlides, heroSection, upcomingEvents } from "@/data/content";
+import { ArrowUpRight, CalendarDays, CreditCard, MapPin } from "lucide-react";
+import { academyPayment, heroCarouselSlides, heroSection, upcomingEvents } from "@/data/content";
 
 const SLIDE_INTERVAL_MS = 6000;
 
@@ -142,6 +142,56 @@ export default function HeroCarousel() {
               <Link href={featuredEvent.href} className="hero-hub-event-cta">
                 Get details
                 <ArrowUpRight size={14} />
+              </Link>
+            </div>
+          </aside>
+
+          <aside className="hero-hub-fees-card">
+            <a
+              href={academyPayment.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hero-hub-fees-compact"
+            >
+              <CreditCard className="hero-hub-fees-compact-icon" size={16} aria-hidden />
+              <span className="hero-hub-fees-compact-eyebrow">Pay fees</span>
+              <span className="hero-hub-fees-compact-title">
+                {academyPayment.onboarding.localAmount} onboarding ·{" "}
+                {academyPayment.training.amount} / session
+              </span>
+              <ArrowUpRight className="hero-hub-fees-compact-arrow" size={16} aria-hidden />
+            </a>
+
+            <div className="hero-hub-fees-desktop">
+              <div className="hero-hub-fees-header">
+                <span className="hero-hub-fees-label">Academy fees</span>
+                <span className="hero-hub-fees-pill">RukaPay</span>
+              </div>
+              <h2 className="hero-hub-fees-title">Pay onboarding & training fees</h2>
+              <ul className="hero-hub-fees-list">
+                <li>
+                  <strong>{academyPayment.onboarding.localAmount}</strong> — local membership /
+                  onboarding
+                </li>
+                <li>
+                  <strong>{academyPayment.onboarding.internationalAmount}</strong> — international
+                  registration
+                </li>
+                <li>
+                  <strong>{academyPayment.training.amount}</strong> — per training session
+                </li>
+              </ul>
+              <a
+                href={academyPayment.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hero-hub-fees-cta"
+              >
+                Pay via {academyPayment.provider}
+                <ArrowUpRight size={14} />
+              </a>
+              <Link href="/pricing" className="hero-hub-fees-link">
+                View full pricing
               </Link>
             </div>
           </aside>

@@ -2,16 +2,18 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { Send, ShieldCheck } from "lucide-react";
+import Link from "next/link";
+import { ExternalLink, Send } from "lucide-react";
 import SectionHeader from "@/components/SectionHeader";
 import {
   boosterCampaigns,
+  boosterPaymentConfig,
   donationTiers,
   formatUGX,
   paymentMethods,
   type BoosterPaymentMethod,
 } from "@/data/boosterClub";
-import { getCampaignById } from "@/lib/boosterClub";
+import { getCampaignById, getRukaPayPaymentUrl, saveDonationIntent } from "@/lib/boosterClub";
 
 const inputClass =
   "w-full px-4 py-3 rounded-xl bg-white border border-ms-border text-ms-text text-base focus:outline-none focus:border-ms-blue focus:ring-2 focus:ring-ms-blue/10 transition-colors";
@@ -21,8 +23,8 @@ const labelClass =
 export default function DonationForm() {
   const searchParams = useSearchParams();
   const campaignParam = searchParams.get("campaign");
+  const paymentUrl = getRukaPayPaymentUrl();
 
-  const [submitted, setSubmitted] = useState(false);
   const [selectedTierId, setSelectedTierId] = useState<string | null>(null);
   const [form, setForm] = useState({
     name: "",
@@ -56,41 +58,34 @@ export default function DonationForm() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    // TODO(payment-gateway): Initiate payment via Pesapal, Flutterwave, or Yo! Payments.
-    // 1. POST donation intent to /api/booster/donations with form payload
-    // 2. Receive checkout URL or mobile-money STK push reference
-    // 3. Redirect user to gateway or show in-app payment status
-    // 4. On webhook confirmation, update campaign.raised and impact ledger in admin DB
+    const campaign =
+      getCampaignById(activeCampaigns, form.campaignId) ?? activeCampaigns[0];
 
-    setSubmitted(true);
+    saveDonationIntent({
+      name: form.name,
+      phone: form.phone,
+      email: form.email,
+      campaignId: form.campaignId,
+      campaignTitle: campaign?.title ?? "Booster Club",
+      amount: form.amount,
+      paymentMethod: form.paymentMethod,
+      anonymous: form.anonymous,
+      message: form.message,
+      submittedAt: new Date().toISOString(),
+    });
+
+    // TODO(payment-webhook): When RukaPay webhooks are available, match completed
+    // payments to donation intents and update campaign.raised in the admin dashboard.
+
+    window.location.href = paymentUrl;
   };
-
-  if (submitted) {
-    return (
-      <section id="donate" className="section-modern w-full site-container scroll-mt-24">
-        <div className="booster-form-success card-modern p-8 md:p-10 text-center max-w-2xl mx-auto">
-          <ShieldCheck size={40} className="mx-auto text-ms-blue mb-4" />
-          <h2 className="text-2xl font-black tracking-tight">Thank you for your support</h2>
-          <p className="text-sm text-ms-text-muted mt-3 leading-relaxed">
-            Your donation request has been recorded. Payment gateway integration is coming
-            soon — our team will contact you to complete your contribution via your selected
-            method.
-          </p>
-          <p className="text-xs text-ms-text-muted mt-4">
-            Reference: pending payment · Campaign:{" "}
-            {getCampaignById(activeCampaigns, form.campaignId)?.title ?? "General fund"}
-          </p>
-        </div>
-      </section>
-    );
-  }
 
   return (
     <section id="donate" className="section-modern w-full site-container scroll-mt-24">
       <SectionHeader
         eyebrow="Make a gift"
         title="Donation form"
-        subtitle="Complete your details below. Mobile Money is recommended for the fastest experience on phone."
+        subtitle={`Complete your details below, then continue to ${boosterPaymentConfig.provider} to pay with Mobile Money or card.`}
       />
 
       <div className="booster-form-layout">
@@ -250,13 +245,21 @@ export default function DonationForm() {
 
           <button type="submit" className="btn-primary w-full mt-6">
             <Send size={16} />
-            Continue to payment
+            Continue to {boosterPaymentConfig.provider} payment
           </button>
 
           <p className="text-xs text-ms-text-muted mt-4 leading-relaxed">
-            {/* TODO(payment-gateway): Replace with live checkout once Pesapal / Flutterwave / Yo! is configured */}
-            Payment processing is not yet connected. Submitting records your intent and our team
-            will follow up to complete payment securely.
+            You will be redirected to our secure{" "}
+            <a
+              href={paymentUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-ms-blue font-semibold hover:underline"
+            >
+              {boosterPaymentConfig.provider} checkout
+            </a>{" "}
+            to complete payment with MTN Mobile Money, Airtel Money, or card. Please use your
+            selected campaign name as a payment reference where possible.
           </p>
         </form>
 
@@ -272,6 +275,15 @@ export default function DonationForm() {
             Larger gifts can be multiplied across groups of players. Contact us if you would like
             to sponsor a full team or season.
           </p>
+          <Link
+            href={paymentUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-ms-red hover:text-ms-red-dark transition-colors mt-5"
+          >
+            Pay now via {boosterPaymentConfig.provider}
+            <ExternalLink size={15} />
+          </Link>
         </aside>
       </div>
     </section>

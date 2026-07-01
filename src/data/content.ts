@@ -197,7 +197,28 @@ export const pricing = {
     note: "Payable per session attended. Membership registration is separate.",
   },
   paymentNote:
-    "All payments should be made through the official academy payment channels. Contact the office for current payment details and receipts.",
+    "Pay membership and training fees securely online via RukaPay (MTN Mobile Money, Airtel Money, or card). Use the player's name and fee type as your payment reference.",
+};
+
+/** Shared RukaPay checkout for academy fees and Booster Club donations */
+export const rukaPayPaymentUrl = "https://merchant.rukapay.co.ug/receive_payment/2117";
+
+export const academyPayment = {
+  provider: "RukaPay",
+  url: rukaPayPaymentUrl,
+  onboarding: {
+    title: "Membership / onboarding fee",
+    localAmount: "UGX 350,000",
+    internationalAmount: "USD 100",
+    description: "One-time registration including academy kit package.",
+  },
+  training: {
+    title: "Training session fee",
+    amount: "UGX 20,000",
+    description: "Payable per session attended after registration.",
+  },
+  referenceNote:
+    "Please include the player's name and whether you are paying registration or training fees in your payment reference.",
 };
 
 export interface TrainingScheduleBlock {

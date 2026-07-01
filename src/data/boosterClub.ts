@@ -1,4 +1,4 @@
-import { academyImages } from "@/data/content";
+import { academyImages, rukaPayPaymentUrl } from "@/data/content";
 
 /** Admin-ready types — connect to dashboard / API later */
 
@@ -63,6 +63,12 @@ export const boosterClubContent = {
   trustStatement:
     "All Booster Club funds are directed toward verified academy activities. We publish impact updates so donors can see exactly how their support is used.",
 };
+
+/** Live checkout — RukaPay merchant page for Booster Club donations */
+export const boosterPaymentConfig = {
+  provider: "RukaPay",
+  url: rukaPayPaymentUrl,
+} as const;
 
 export const boosterCampaigns: BoosterCampaign[] = [
   {
@@ -145,17 +151,17 @@ export const paymentMethods: PaymentMethodOption[] = [
   {
     id: "mtn",
     label: "MTN Mobile Money",
-    description: "Pay instantly from your MTN MoMo wallet.",
+    description: "Pay via RukaPay from your MTN MoMo wallet.",
   },
   {
     id: "airtel",
     label: "Airtel Money",
-    description: "Pay securely via Airtel Money on your phone.",
+    description: "Pay via RukaPay using Airtel Money on your phone.",
   },
   {
     id: "card",
     label: "Visa / Mastercard",
-    description: "Pay by debit or credit card online.",
+    description: "Pay by debit or credit card through RukaPay.",
   },
 ];
 

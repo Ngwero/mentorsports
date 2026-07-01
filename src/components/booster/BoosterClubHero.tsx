@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowUpRight, Heart, Shield } from "lucide-react";
 import PageHero from "@/components/PageHero";
 import { academyImages } from "@/data/content";
-import { boosterClubContent } from "@/data/boosterClub";
+import { boosterClubContent, boosterPaymentConfig } from "@/data/boosterClub";
 
 export default function BoosterClubHero() {
   return (
@@ -58,8 +58,8 @@ export default function BoosterClubHero() {
                 <div>
                   <h3 className="font-bold">Secure & transparent</h3>
                   <p className="text-sm text-ms-text-muted mt-1 leading-relaxed">
-                    Mobile Money and card payments with published impact updates for every major
-                    disbursement.
+                    Mobile Money and card payments via {boosterPaymentConfig.provider} with
+                    published impact updates for every major disbursement.
                   </p>
                 </div>
               </div>
