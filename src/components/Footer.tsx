@@ -174,7 +174,7 @@ export default function Footer() {
             All rights reserved.
           </p>
           <div className="flex items-center gap-4">
-            <Link href="#" className="hover:text-white transition-colors">
+            <Link href="/privacy" className="hover:text-white transition-colors">
               Privacy
             </Link>
             <Link href="#" className="hover:text-white transition-colors">

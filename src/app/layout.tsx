@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FaqChatbot from "@/components/FaqChatbot";
+import CookieConsent from "@/components/CookieConsent";
 import PageLoader from "@/components/PageLoader";
 import { siteConfig } from "@/data/content";
 
@@ -45,6 +46,7 @@ export default function RootLayout({
         <main className="overflow-x-hidden w-full">{children}</main>
         <Footer />
         <FaqChatbot />
+        <CookieConsent />
       </body>
     </html>
   );

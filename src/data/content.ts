@@ -394,6 +394,7 @@ export const mainNavItems = [
   { label: "Teams", href: "/teams" },
   { label: "Trials", href: "/trials" },
   { label: "Events", href: "/events" },
+  { label: "Booster Club", href: "/booster-club" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];
@@ -537,6 +538,30 @@ export const navMegaMenus: Record<string, NavMegaMenu> = {
         subtitle: "Mon, Thu, Fri · 9 AM – 12 PM",
         href: "/events",
         image: academyImages.coachTeamTalk,
+        dark: true,
+      },
+    ],
+  },
+  "/booster-club": {
+    href: "/booster-club",
+    subLinks: [
+      { label: "Active Campaigns", href: "/booster-club#campaigns" },
+      { label: "Donate Now", href: "/booster-club#donate" },
+      { label: "Impact Ledger", href: "/booster-club#impact" },
+      { label: "Booster Updates", href: "/booster-club#updates" },
+    ],
+    featured: [
+      {
+        title: "Road to the Chipkizi Cup",
+        subtitle: "Help squads travel and compete",
+        href: "/booster-club?campaign=chipkizi-cup#donate",
+        image: academyImages.academyVictoryBanner,
+      },
+      {
+        title: "Sponsor a Player",
+        subtitle: "Support talent pathways",
+        href: "/booster-club?campaign=sponsor-player#donate",
+        image: academyImages.playerPortrait,
         dark: true,
       },
     ],

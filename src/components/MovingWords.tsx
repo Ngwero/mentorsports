@@ -1,20 +1,27 @@
 import { movingWordValues } from "@/data/content";
 
+const marqueeItems = ["Our Values", ...movingWordValues];
+
 export default function MovingWords() {
-  const items = [...movingWordValues, ...movingWordValues];
+  const items = [...marqueeItems, ...marqueeItems];
 
   return (
     <div className="marquee-strip" aria-label="Academy values">
       <div className="marquee-strip-inner">
-        <span className="marquee-values-badge">Our Values</span>
         <div className="marquee-strip-scroll overflow-hidden">
-          <div className="marquee-track flex w-max items-center gap-8 md:gap-12 py-3 md:py-3.5">
+          <div className="marquee-track flex w-max items-center gap-6 md:gap-10 py-3 md:py-3.5">
             {items.map((value, i) => (
               <span
                 key={`${value}-${i}`}
-                className="flex items-center gap-8 md:gap-12 shrink-0"
+                className="flex items-center gap-6 md:gap-10 shrink-0"
               >
-                <span className="marquee-value-text">{value}</span>
+                <span
+                  className={
+                    value === "Our Values" ? "marquee-value-text marquee-value-lead" : "marquee-value-text"
+                  }
+                >
+                  {value}
+                </span>
                 <span className="marquee-value-dot" aria-hidden="true">
                   ◆
                 </span>

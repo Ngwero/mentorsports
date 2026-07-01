@@ -44,33 +44,31 @@ function articleImageAspect(article: NewsArticle) {
 
 function FeaturedVideoCard() {
   return (
-    <article className="card-modern overflow-hidden flex flex-col">
-      <div className="p-3 md:p-4">
-        <VideoPlayer
-          videoId={featuredVideo.youtubeId}
-          title={featuredVideo.title}
-          className="rounded-xl"
-        />
-      </div>
-      <div className="p-5 md:p-6 border-t border-ms-border bg-white">
-        <span className="text-xs font-bold uppercase tracking-widest text-ms-red">
-          Academy Highlights
-        </span>
-        <h3 className="text-lg md:text-xl font-black leading-snug mt-2">
-          {featuredVideo.title}
-        </h3>
-        <p className="text-sm text-ms-text-muted mt-2 leading-relaxed">
-          See Mentor Sports International Academy in action on the pitch.
-        </p>
-        <Link
-          href={featuredVideo.youtubeUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 text-sm font-semibold text-ms-red hover:text-ms-red-dark transition-colors mt-4"
-        >
-          Watch on YouTube
-          <ExternalLink size={16} />
-        </Link>
+    <article className="news-featured card-modern overflow-hidden">
+      <div className="news-featured-grid">
+        <div className="news-featured-media">
+          <VideoPlayer
+            videoId={featuredVideo.youtubeId}
+            title={featuredVideo.title}
+            className="md:rounded-l-[1.2rem] md:rounded-r-none"
+          />
+        </div>
+        <div className="news-featured-copy">
+          <span className="news-featured-eyebrow">Academy Highlights</span>
+          <h3 className="news-featured-title">{featuredVideo.title}</h3>
+          <p className="news-featured-text">
+            See Mentor Sports International Academy in action on the pitch.
+          </p>
+          <Link
+            href={featuredVideo.youtubeUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="news-featured-link"
+          >
+            Watch on YouTube
+            <ExternalLink size={16} />
+          </Link>
+        </div>
       </div>
     </article>
   );
@@ -258,20 +256,16 @@ export default function NewsGrid({ limit, showViewAll = false }: NewsGridProps) 
         }
       />
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 lg:items-stretch">
-        <div className="lg:sticky lg:top-24 lg:self-start">
-          <FeaturedVideoCard />
-        </div>
+      <FeaturedVideoCard />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5">
-          {gridArticles.map((article) => (
-            <NewsCard key={article.id} article={article} onOpenVideo={openVideo} />
-          ))}
-        </div>
+      <div className="news-cards-grid">
+        {gridArticles.map((article) => (
+          <NewsCard key={article.id} article={article} onOpenVideo={openVideo} />
+        ))}
       </div>
 
       {compactArticles.length > 0 && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5 mt-6">
+        <div className="news-compact-grid">
           {compactArticles.map((article) => (
             <CompactNewsCard
               key={article.id}

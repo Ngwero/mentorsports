@@ -260,18 +260,20 @@ export default function FaqChatbot() {
       <button
         type="button"
         onClick={() => setOpen((prev) => !prev)}
-        className={`faq-chat-toggle fixed bottom-5 right-5 z-50 flex items-center gap-2 bg-ms-red text-white px-4 py-3 rounded-full shadow-lg hover:bg-ms-red-dark hover:scale-105 active:scale-95 transition-all ${
+        className={`faq-chat-toggle fixed bottom-4 right-4 z-50 flex items-center gap-2 bg-ms-red text-white px-3 py-3 sm:px-4 rounded-full shadow-lg hover:bg-ms-red-dark hover:scale-105 active:scale-95 transition-all ${
           !open && !hasOpened ? "faq-chat-toggle-pulse" : ""
         }`}
         aria-label={open ? "Close help chat" : "Open help chat"}
         aria-expanded={open}
       >
         {open ? <X size={20} /> : <MessageCircle size={20} />}
-        <span className="text-sm font-semibold pr-1">{open ? "Close" : "Ask us"}</span>
+        <span className="hidden sm:inline text-sm font-semibold pr-1">
+          {open ? "Close" : "Ask us"}
+        </span>
       </button>
 
       <div
-        className={`faq-chat-panel fixed bottom-20 right-5 z-50 w-[min(100vw-2.5rem,400px)] bg-white rounded-2xl shadow-2xl border border-ms-border overflow-hidden transition-all duration-300 origin-bottom-right ${
+        className={`faq-chat-panel fixed bottom-[4.75rem] right-4 sm:bottom-20 sm:right-5 z-50 w-[min(100vw-2rem,400px)] bg-white rounded-2xl shadow-2xl border border-ms-border overflow-hidden transition-all duration-300 origin-bottom-right ${
           open
             ? "opacity-100 scale-100 translate-y-0 pointer-events-auto"
             : "opacity-0 scale-95 translate-y-4 pointer-events-none"

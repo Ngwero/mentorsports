@@ -2,6 +2,7 @@ import HeroCarousel from "@/components/HeroCarousel";
 import MovingWords from "@/components/MovingWords";
 import NewsGrid from "@/components/NewsGrid";
 import CarouselSection from "@/components/CarouselSection";
+import FacilitiesGrid from "@/components/FacilitiesGrid";
 import GallerySection from "@/components/GallerySection";
 import EventsSection from "@/components/EventsSection";
 import PricingSection from "@/components/PricingSection";
@@ -36,6 +37,10 @@ export default function Home() {
             autoScroll
           />
         </section>
+      </ScrollReveal>
+
+      <ScrollReveal>
+        <FacilitiesGrid />
       </ScrollReveal>
 
       <ScrollReveal>
@@ -75,9 +80,7 @@ export default function Home() {
       </ScrollReveal>
 
       <ScrollReveal delay={80}>
-        <section className="section-modern section-surface-alt">
-          <EventsSection />
-        </section>
+        <EventsSection />
       </ScrollReveal>
 
       <ScrollReveal>

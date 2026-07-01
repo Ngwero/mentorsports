@@ -3,7 +3,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import AcademyImage from "@/components/AcademyImage";
 import Link from "next/link";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import SectionHeader from "@/components/SectionHeader";
 import VideoModal from "@/components/VideoModal";
 import VideoPlayButton from "@/components/VideoPlayButton";
@@ -63,15 +62,6 @@ export default function CarouselSection({
     });
   }, []);
 
-  const scroll = (direction: "left" | "right") => {
-    if (!scrollRef.current) return;
-    const amount = scrollRef.current.offsetWidth * 0.75;
-    scrollRef.current.scrollBy({
-      left: direction === "left" ? -amount : amount,
-      behavior: "smooth",
-    });
-  };
-
   useEffect(() => {
     if (!autoScroll || items.length < 2) return;
 
@@ -114,22 +104,14 @@ export default function CarouselSection({
           title={title}
           subtitle={subtitle}
           action={
-            <div className="flex items-center gap-2">
-              {viewAllHref && (
-                <Link
-                  href={viewAllHref}
-                  className="hidden sm:inline-flex text-sm font-semibold text-ms-gold hover:text-ms-red transition-colors mr-2"
-                >
-                  View All
-                </Link>
-              )}
-              <button onClick={() => scroll("left")} className="carousel-nav-btn" aria-label="Scroll left">
-                <ChevronLeft size={18} />
-              </button>
-              <button onClick={() => scroll("right")} className="carousel-nav-btn" aria-label="Scroll right">
-                <ChevronRight size={18} />
-              </button>
-            </div>
+            viewAllHref ? (
+              <Link
+                href={viewAllHref}
+                className="hidden sm:inline-flex text-sm font-semibold text-ms-gold hover:text-ms-red transition-colors"
+              >
+                View All
+              </Link>
+            ) : undefined
           }
         />
       </div>
