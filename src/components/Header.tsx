@@ -9,6 +9,7 @@ import { mainNavItems, navMegaMenus } from "@/data/content";
 import Logo from "@/components/Logo";
 import NavMegaItem from "@/components/NavMegaItem";
 import MegaMenuPanel from "@/components/MegaMenuPanel";
+import { isExternalUrl } from "@/lib/links";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -125,27 +126,49 @@ export default function Header() {
 
                     {mega && expanded && (
                       <div className="mobile-menu-sub">
-                        {mega.subLinks.map((sub) => (
-                          <Link
-                            key={sub.label}
-                            href={sub.href}
-                            onClick={closeMenu}
-                            className="mobile-menu-sublink"
-                          >
-                            {sub.label}
-                          </Link>
-                        ))}
-                        <div className="mobile-menu-featured">
-                          {mega.featured.map((card) => (
-                            <Link
-                              key={card.title}
-                              href={card.href}
-                              onClick={closeMenu}
-                              className="mobile-menu-featured-card"
+                        {mega.subLinks.map((sub) =>
+                          isExternalUrl(sub.href) ? (
+                            <a
+                              key={sub.label}
+                              href={sub.href}
+                              rel="noopener noreferrer"
+                              className="mobile-menu-sublink"
                             >
-                              {card.title}
+                              {sub.label}
+                            </a>
+                          ) : (
+                            <Link
+                              key={sub.label}
+                              href={sub.href}
+                              onClick={closeMenu}
+                              className="mobile-menu-sublink"
+                            >
+                              {sub.label}
                             </Link>
-                          ))}
+                          )
+                        )}
+                        <div className="mobile-menu-featured">
+                          {mega.featured.map((card) =>
+                            isExternalUrl(card.href) ? (
+                              <a
+                                key={card.title}
+                                href={card.href}
+                                rel="noopener noreferrer"
+                                className="mobile-menu-featured-card"
+                              >
+                                {card.title}
+                              </a>
+                            ) : (
+                              <Link
+                                key={card.title}
+                                href={card.href}
+                                onClick={closeMenu}
+                                className="mobile-menu-featured-card"
+                              >
+                                {card.title}
+                              </Link>
+                            )
+                          )}
                         </div>
                       </div>
                     )}

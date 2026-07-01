@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Lock, Mail, Phone, Shield, Users } from "lucide-react";
+import PaymentLink from "@/components/PaymentLink";
 import { siteConfig } from "@/data/content";
 import { boosterClubContent, boosterPaymentConfig } from "@/data/boosterClub";
 
@@ -12,12 +13,12 @@ export default function BoosterTrust() {
           <h3 className="font-bold text-lg">Secure payments</h3>
           <p className="text-sm text-ms-text-muted mt-2 leading-relaxed">
             Donations are processed securely through{" "}
-            <a
+            <PaymentLink
               href={boosterPaymentConfig.url}
               className="text-ms-blue font-semibold hover:underline"
             >
               {boosterPaymentConfig.provider}
-            </a>
+            </PaymentLink>
             . Mobile Money and card details are handled on their encrypted checkout page.
           </p>
         </div>

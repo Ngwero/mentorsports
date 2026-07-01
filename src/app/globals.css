@@ -983,8 +983,12 @@ body {
     gap: 0.55rem;
     width: 100%;
     min-width: 0;
+    min-height: 2.75rem;
     padding: 0.85rem 1rem;
     color: inherit;
+    text-decoration: none;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
     transition: background 0.2s ease;
   }
 
@@ -3226,6 +3230,8 @@ body {
 }
 
 .booster-campaign-donate {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
   min-height: 2.75rem;
 }
 
@@ -3252,6 +3258,8 @@ body {
   color: inherit;
   text-decoration: none;
   cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
   transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -3457,6 +3465,7 @@ body {
   z-index: 54;
   background: rgba(15, 23, 42, 0.35);
   backdrop-filter: blur(2px);
+  pointer-events: none;
 }
 
 .cookie-consent {

@@ -33,7 +33,7 @@ export default function CookieConsent() {
 
   return (
     <>
-      <div className="cookie-consent-backdrop" aria-hidden onClick={accept} />
+      <div className="cookie-consent-backdrop" aria-hidden />
       <div
         className="cookie-consent"
       role="dialog"

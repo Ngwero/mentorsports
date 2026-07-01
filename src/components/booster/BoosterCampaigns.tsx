@@ -1,5 +1,6 @@
 import { ArrowUpRight } from "lucide-react";
 import AcademyImage from "@/components/AcademyImage";
+import PaymentLink from "@/components/PaymentLink";
 import SectionHeader from "@/components/SectionHeader";
 import {
   boosterCampaigns,
@@ -69,13 +70,13 @@ export default function BoosterCampaigns() {
                   </div>
                 </dl>
 
-                <a
+                <PaymentLink
                   href={getRukaPayPaymentUrl()}
                   className="booster-campaign-donate btn-primary w-full mt-5"
                 >
                   Donate via {boosterPaymentConfig.provider}
                   <ArrowUpRight size={16} />
-                </a>
+                </PaymentLink>
               </div>
             </article>
           );

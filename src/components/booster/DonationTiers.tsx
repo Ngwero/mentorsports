@@ -1,4 +1,5 @@
 import { ExternalLink } from "lucide-react";
+import PaymentLink from "@/components/PaymentLink";
 import SectionHeader from "@/components/SectionHeader";
 import { boosterClubContent, donationTiers, formatUGX } from "@/data/boosterClub";
 import { getRukaPayPaymentUrl } from "@/lib/boosterClub";
@@ -16,7 +17,7 @@ export default function DonationTiers() {
 
       <div className="booster-tiers-grid">
         {donationTiers.map((tier) => (
-          <a
+          <PaymentLink
             key={tier.id}
             href={paymentUrl}
             className="booster-tier-card card-modern text-left p-5 md:p-6 hover:border-ms-blue/35"
@@ -30,7 +31,7 @@ export default function DonationTiers() {
               Pay now
               <ExternalLink size={14} />
             </span>
-          </a>
+          </PaymentLink>
         ))}
       </div>
 

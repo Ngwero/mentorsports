@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Check, ExternalLink } from "lucide-react";
 import SectionHeader from "@/components/SectionHeader";
+import PaymentLink from "@/components/PaymentLink";
 import { academyPayment, pricing } from "@/data/content";
 
 export default function PricingSection() {
@@ -63,13 +64,13 @@ export default function PricingSection() {
               </ul>
             )}
 
-            <a
+            <PaymentLink
               href={academyPayment.url}
               className="inline-flex items-center justify-center gap-2 mt-6 w-full border border-ms-blue text-ms-blue px-5 py-2.5 font-bold text-sm rounded-xl hover:bg-ms-blue hover:text-white transition-colors"
             >
               Pay onboarding fee
               <ExternalLink size={14} />
-            </a>
+            </PaymentLink>
           </div>
         ))}
 
@@ -106,13 +107,13 @@ export default function PricingSection() {
             >
               Register Now
             </Link>
-            <a
+            <PaymentLink
               href={academyPayment.url}
               className="inline-flex items-center justify-center gap-2 mt-3 w-full border border-ms-blue text-ms-blue px-6 py-3 font-bold text-sm rounded-xl hover:bg-ms-blue hover:text-white transition-colors"
             >
               Pay training fees
               <ExternalLink size={15} />
-            </a>
+            </PaymentLink>
           </div>
         </div>
       </div>
@@ -124,13 +125,13 @@ export default function PricingSection() {
             {pricing.paymentNote}
           </p>
         </div>
-        <a
+        <PaymentLink
           href={academyPayment.url}
           className="inline-flex items-center justify-center gap-2 shrink-0 bg-ms-blue text-white px-6 py-3 font-bold text-sm rounded-xl hover:bg-ms-blue-dark transition-colors"
         >
           Pay via {academyPayment.provider}
           <ExternalLink size={16} />
-        </a>
+        </PaymentLink>
       </div>
     </section>
   );

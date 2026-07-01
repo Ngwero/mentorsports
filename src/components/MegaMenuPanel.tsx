@@ -3,6 +3,7 @@
 import AcademyImage from "@/components/AcademyImage";
 import Link from "next/link";
 import type { NavMegaMenu } from "@/data/content";
+import { isExternalUrl } from "@/lib/links";
 
 interface MegaMenuPanelProps {
   menu: NavMegaMenu | null;
@@ -24,58 +25,111 @@ export default function MegaMenuPanel({ menu, visible }: MegaMenuPanelProps) {
         <div className="max-w-7xl mx-auto px-6 py-6">
           <div className="grid grid-cols-[200px_1fr] gap-8">
             <nav className="flex flex-col gap-1">
-              {menu.subLinks.map((link) => (
-                <Link
-                  key={link.label}
-                  href={link.href}
-                  className="mega-sub-link text-[15px] font-semibold text-ms-text py-2.5 px-3 rounded-lg hover:bg-ms-off-white hover:text-ms-blue transition-colors"
-                >
-                  {link.label}
-                </Link>
-              ))}
+              {menu.subLinks.map((link) =>
+                isExternalUrl(link.href) ? (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    rel="noopener noreferrer"
+                    className="mega-sub-link text-[15px] font-semibold text-ms-text py-2.5 px-3 rounded-lg hover:bg-ms-off-white hover:text-ms-blue transition-colors"
+                  >
+                    {link.label}
+                  </a>
+                ) : (
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    className="mega-sub-link text-[15px] font-semibold text-ms-text py-2.5 px-3 rounded-lg hover:bg-ms-off-white hover:text-ms-blue transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                )
+              )}
             </nav>
 
             <div className="grid grid-cols-2 gap-3 max-w-sm ml-auto">
-              {menu.featured.map((card) => (
-                <Link
-                  key={card.title}
-                  href={card.href}
-                  className={`group relative aspect-[3/2] max-h-[120px] rounded-xl overflow-hidden ${
-                    card.dark ? "bg-ms-blue-dark" : ""
-                  }`}
-                >
-                  {!card.dark && (
-                    <AcademyImage
-                      src={card.image}
-                      alt={card.title}
-                      fill
-                      className="object-cover group-hover:scale-[1.02] transition-transform duration-300"
-                      sizes="160px"
-                    />
-                  )}
-                  {card.dark && (
-                    <div
-                      className="absolute inset-0 bg-cover bg-center opacity-40 group-hover:scale-[1.02] transition-transform duration-300"
-                      style={{ backgroundImage: `url(${card.image})` }}
-                    />
-                  )}
-                  <div
-                    className={`absolute inset-0 ${
-                      card.dark
-                        ? "bg-gradient-to-t from-ms-blue-dark via-ms-blue-dark/80 to-transparent"
-                        : "bg-gradient-to-t from-black/80 via-black/30 to-transparent"
+              {menu.featured.map((card) =>
+                isExternalUrl(card.href) ? (
+                  <a
+                    key={card.title}
+                    href={card.href}
+                    rel="noopener noreferrer"
+                    className={`group relative aspect-[3/2] max-h-[120px] rounded-xl overflow-hidden ${
+                      card.dark ? "bg-ms-blue-dark" : ""
                     }`}
-                  />
-                  <div className="absolute bottom-0 left-0 right-0 p-3">
-                    {card.subtitle && (
-                      <p className="text-white/70 text-[10px] mb-0.5">{card.subtitle}</p>
+                  >
+                    {!card.dark && (
+                      <AcademyImage
+                        src={card.image}
+                        alt={card.title}
+                        fill
+                        className="object-cover group-hover:scale-[1.02] transition-transform duration-300"
+                        sizes="160px"
+                      />
                     )}
-                    <p className="text-white font-bold text-xs leading-snug group-hover:text-ms-gold transition-colors">
-                      {card.title}
-                    </p>
-                  </div>
-                </Link>
-              ))}
+                    {card.dark && (
+                      <div
+                        className="absolute inset-0 bg-cover bg-center opacity-40 group-hover:scale-[1.02] transition-transform duration-300"
+                        style={{ backgroundImage: `url(${card.image})` }}
+                      />
+                    )}
+                    <div
+                      className={`absolute inset-0 ${
+                        card.dark
+                          ? "bg-gradient-to-t from-ms-blue-dark via-ms-blue-dark/80 to-transparent"
+                          : "bg-gradient-to-t from-black/80 via-black/30 to-transparent"
+                      }`}
+                    />
+                    <div className="absolute bottom-0 left-0 right-0 p-3">
+                      {card.subtitle && (
+                        <p className="text-white/70 text-[10px] mb-0.5">{card.subtitle}</p>
+                      )}
+                      <p className="text-white font-bold text-xs leading-snug group-hover:text-ms-gold transition-colors">
+                        {card.title}
+                      </p>
+                    </div>
+                  </a>
+                ) : (
+                  <Link
+                    key={card.title}
+                    href={card.href}
+                    className={`group relative aspect-[3/2] max-h-[120px] rounded-xl overflow-hidden ${
+                      card.dark ? "bg-ms-blue-dark" : ""
+                    }`}
+                  >
+                    {!card.dark && (
+                      <AcademyImage
+                        src={card.image}
+                        alt={card.title}
+                        fill
+                        className="object-cover group-hover:scale-[1.02] transition-transform duration-300"
+                        sizes="160px"
+                      />
+                    )}
+                    {card.dark && (
+                      <div
+                        className="absolute inset-0 bg-cover bg-center opacity-40 group-hover:scale-[1.02] transition-transform duration-300"
+                        style={{ backgroundImage: `url(${card.image})` }}
+                      />
+                    )}
+                    <div
+                      className={`absolute inset-0 ${
+                        card.dark
+                          ? "bg-gradient-to-t from-ms-blue-dark via-ms-blue-dark/80 to-transparent"
+                          : "bg-gradient-to-t from-black/80 via-black/30 to-transparent"
+                      }`}
+                    />
+                    <div className="absolute bottom-0 left-0 right-0 p-3">
+                      {card.subtitle && (
+                        <p className="text-white/70 text-[10px] mb-0.5">{card.subtitle}</p>
+                      )}
+                      <p className="text-white font-bold text-xs leading-snug group-hover:text-ms-gold transition-colors">
+                        {card.title}
+                      </p>
+                    </div>
+                  </Link>
+                )
+              )}
             </div>
           </div>
         </div>

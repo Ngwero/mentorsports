@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { ArrowUpRight, CalendarDays, CreditCard, MapPin } from "lucide-react";
 import { academyPayment, heroCarouselSlides, heroSection, upcomingEvents } from "@/data/content";
+import PaymentLink from "@/components/PaymentLink";
 
 const SLIDE_INTERVAL_MS = 6000;
 
@@ -147,7 +148,7 @@ export default function HeroCarousel() {
           </aside>
 
           <aside className="hero-hub-fees-card">
-            <a
+            <PaymentLink
               href={academyPayment.url}
               className="hero-hub-fees-compact"
             >
@@ -158,7 +159,7 @@ export default function HeroCarousel() {
                 {academyPayment.training.amount} / session
               </span>
               <ArrowUpRight className="hero-hub-fees-compact-arrow" size={16} aria-hidden />
-            </a>
+            </PaymentLink>
 
             <div className="hero-hub-fees-desktop">
               <div className="hero-hub-fees-header">
@@ -179,13 +180,13 @@ export default function HeroCarousel() {
                   <strong>{academyPayment.training.amount}</strong> — per training session
                 </li>
               </ul>
-              <a
+              <PaymentLink
                 href={academyPayment.url}
                 className="hero-hub-fees-cta"
               >
                 Pay via {academyPayment.provider}
                 <ArrowUpRight size={14} />
-              </a>
+              </PaymentLink>
               <Link href="/pricing" className="hero-hub-fees-link">
                 View full pricing
               </Link>
