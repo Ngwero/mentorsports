@@ -3680,6 +3680,9 @@ body {
 }
 
 .popup-promo-title {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
   margin-top: 0.85rem;
   font-size: clamp(1.35rem, 4.5vw, 1.75rem);
   font-weight: 900;
@@ -3687,6 +3690,29 @@ body {
   letter-spacing: -0.03em;
   color: var(--ms-text);
   text-wrap: balance;
+}
+
+.popup-live-dot {
+  flex-shrink: 0;
+  width: 0.55rem;
+  height: 0.55rem;
+  margin-top: 0.45em;
+  border-radius: 9999px;
+  background: var(--ms-red);
+  box-shadow: 0 0 0 0 rgba(200, 16, 46, 0.55);
+  animation: popup-live-blink 1.6s ease-in-out infinite;
+}
+
+@keyframes popup-live-blink {
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 rgba(200, 16, 46, 0.55);
+  }
+  50% {
+    opacity: 0.35;
+    box-shadow: 0 0 0 6px rgba(200, 16, 46, 0);
+  }
 }
 
 .popup-promo-subtitle {
@@ -3697,9 +3723,6 @@ body {
 }
 
 .popup-highlight-box {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.65rem;
   margin-top: 1.1rem;
   padding: 0.9rem 1rem;
   border-radius: 1rem;
@@ -3713,16 +3736,11 @@ body {
 }
 
 .popup-highlight-box p {
+  margin: 0;
   font-size: 0.875rem;
   line-height: 1.55;
   font-weight: 600;
   color: var(--ms-blue-dark);
-}
-
-.popup-highlight-flag {
-  flex-shrink: 0;
-  font-size: 1.1rem;
-  line-height: 1;
 }
 
 .popup-bullet-list {
@@ -3742,26 +3760,22 @@ body {
 }
 
 .popup-bullet-list li {
-  display: flex;
-  align-items: center;
-  gap: 0.45rem;
+  position: relative;
+  padding-left: 0.85rem;
   font-size: 0.84rem;
   font-weight: 600;
   color: var(--ms-text);
 }
 
-.popup-bullet-check {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 1.15rem;
-  height: 1.15rem;
-  flex-shrink: 0;
-  font-size: 0.65rem;
-  font-weight: 800;
-  color: white;
-  background: var(--ms-blue);
+.popup-bullet-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 0.28rem;
+  height: 0.28rem;
   border-radius: 9999px;
+  background: var(--ms-blue);
 }
 
 .popup-promo-actions {
@@ -3999,9 +4013,7 @@ body {
 /* ── Share program (Uganda social) ── */
 
 .share-program-header {
-  display: flex;
-  align-items: center;
-  gap: 0.45rem;
+  margin: 0;
   font-size: 0.72rem;
   font-weight: 800;
   letter-spacing: 0.1em;
@@ -4019,16 +4031,17 @@ body {
 .share-program-btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
+  justify-content: center;
   min-height: 2.15rem;
-  padding: 0.4rem 0.75rem;
+  padding: 0.4rem 0.85rem;
   font-size: 0.72rem;
   font-weight: 700;
   color: var(--ms-text);
   background: rgba(255, 255, 255, 0.92);
   border: 1px solid var(--ms-border);
   border-radius: 9999px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease,
+    color 0.2s ease;
   touch-action: manipulation;
 }
 
@@ -4037,46 +4050,14 @@ body {
   box-shadow: 0 6px 16px rgba(15, 23, 42, 0.08);
 }
 
-.share-program-btn-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 1.25rem;
-  height: 1.25rem;
-  font-size: 0.62rem;
-  font-weight: 900;
-  border-radius: 9999px;
-  color: white;
-}
-
-.share-program-btn-whatsapp .share-program-btn-icon {
-  background: #25d366;
-}
-
-.share-program-btn-facebook .share-program-btn-icon {
-  background: #1877f2;
-}
-
-.share-program-btn-x .share-program-btn-icon {
-  background: #0f172a;
-}
-
-.share-program-btn-telegram .share-program-btn-icon {
-  background: #229ed9;
-}
-
-.share-program-btn-copy .share-program-btn-icon,
-.share-program-btn-native .share-program-btn-icon {
-  background: var(--ms-blue);
-  color: white;
-}
-
 .share-program-btn-whatsapp:hover {
   border-color: rgba(37, 211, 102, 0.45);
+  color: #128c7e;
 }
 
 .share-program-btn-facebook:hover {
   border-color: rgba(24, 119, 242, 0.45);
+  color: #1877f2;
 }
 
 .share-program-compact .share-program-buttons {
@@ -4088,6 +4069,12 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .popup-live-dot {
+    animation: none;
+    opacity: 1;
+    box-shadow: none;
+  }
+
   .popup-overlay,
   .popup-promo-card,
   .popup-registration-card {

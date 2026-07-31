@@ -32,20 +32,12 @@ export default function MsiaTalentSection({ onRegister }: MsiaTalentSectionProps
             <p className="msia-talent-subtitle">{msiaTalentProgram.subtitle}</p>
 
             <div className="popup-highlight-box msia-talent-highlight">
-              <span className="popup-highlight-flag" aria-hidden>
-                🇩🇪
-              </span>
               <p>{msiaTalentProgram.highlight}</p>
             </div>
 
             <ul className="popup-bullet-list msia-talent-bullets">
               {msiaTalentProgram.bullets.map((item) => (
-                <li key={item}>
-                  <span className="popup-bullet-check" aria-hidden>
-                    ✓
-                  </span>
-                  {item}
-                </li>
+                <li key={item}>{item}</li>
               ))}
             </ul>
 

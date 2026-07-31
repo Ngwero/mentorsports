@@ -1,7 +1,6 @@
 "use client";
 
 import { useCallback, useState } from "react";
-import { Check, Link2, Share2 } from "lucide-react";
 import {
   buildShareUrl,
   type SharePlatform,
@@ -12,14 +11,6 @@ interface ShareProgramProps {
   className?: string;
   compact?: boolean;
 }
-
-const platformIcons: Record<SharePlatform, string> = {
-  whatsapp: "WA",
-  facebook: "f",
-  x: "X",
-  telegram: "TG",
-  copy: "⎘",
-};
 
 export default function ShareProgram({ className = "", compact = false }: ShareProgramProps) {
   const [copied, setCopied] = useState(false);
@@ -55,10 +46,7 @@ export default function ShareProgram({ className = "", compact = false }: ShareP
 
   return (
     <div className={`share-program ${compact ? "share-program-compact" : ""} ${className}`}>
-      <div className="share-program-header">
-        <Share2 size={16} aria-hidden />
-        <span>Share with parents & players</span>
-      </div>
+      <p className="share-program-header">Share with parents and players</p>
 
       <div className="share-program-buttons">
         {ugandaShareOptions.map((option) => (
@@ -69,12 +57,7 @@ export default function ShareProgram({ className = "", compact = false }: ShareP
             className={`share-program-btn share-program-btn-${option.id}`}
             aria-label={option.ariaLabel}
           >
-            <span className="share-program-btn-icon" aria-hidden>
-              {option.id === "copy" && copied ? <Check size={14} /> : platformIcons[option.id]}
-            </span>
-            <span className="share-program-btn-label">
-              {option.id === "copy" && copied ? "Copied!" : option.label}
-            </span>
+            {option.id === "copy" && copied ? "Copied" : option.label}
           </button>
         ))}
 
@@ -85,8 +68,7 @@ export default function ShareProgram({ className = "", compact = false }: ShareP
             className="share-program-btn share-program-btn-native"
             aria-label="Share using your device"
           >
-            <Link2 size={14} aria-hidden />
-            <span className="share-program-btn-label">More</span>
+            More options
           </button>
         )}
       </div>

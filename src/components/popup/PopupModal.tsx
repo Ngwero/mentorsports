@@ -72,7 +72,7 @@ export default function PopupModal({
           <span className="popup-eyebrow">MSIA Football Talent Identification</span>
 
           <h2 id="msia-popup-title" className="popup-promo-title">
-            <span aria-hidden>⚽ </span>
+            <span className="popup-live-dot" aria-hidden />
             {talentPopupContent.headline}
           </h2>
 
@@ -81,20 +81,12 @@ export default function PopupModal({
           </p>
 
           <div className="popup-highlight-box">
-            <span className="popup-highlight-flag" aria-hidden>
-              🇩🇪
-            </span>
             <p>{talentPopupContent.highlight}</p>
           </div>
 
           <ul className="popup-bullet-list">
             {talentPopupContent.bullets.map((item) => (
-              <li key={item}>
-                <span className="popup-bullet-check" aria-hidden>
-                  ✓
-                </span>
-                {item}
-              </li>
+              <li key={item}>{item}</li>
             ))}
           </ul>
 

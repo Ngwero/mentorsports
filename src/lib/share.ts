@@ -4,7 +4,7 @@ import { msiaSectionId, msiaTalentProgram } from "@/data/talentProgram";
 export const talentProgramShareUrl = absoluteUrl(`/#${msiaSectionId}`);
 
 export const talentProgramShareText =
-  "⚽ MSIA Football Talent Identification Program — talented players aged 13–17 can be seen by European scouts at the WSH International Tournament in Kenya (8–17 Dec). Only 32 slots available!";
+  "MSIA Football Talent Identification Program — talented players aged 13–17 can be seen by European scouts at the WSH International Tournament in Kenya (8–17 Dec). Only 32 slots available.";
 
 export const talentProgramShareMessage = `${talentProgramShareText}\n\nRegister here: ${talentProgramShareUrl}`;
 
