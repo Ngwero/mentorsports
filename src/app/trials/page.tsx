@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { createMetadata } from "@/lib/seo";
 import Link from "next/link";
 import { Mail, Phone } from "lucide-react";
 import PageHero from "@/components/PageHero";
@@ -7,11 +8,18 @@ import GettingStarted from "@/components/GettingStarted";
 import ScrollReveal from "@/components/ScrollReveal";
 import { siteConfig, trialSteps, academyImages } from "@/data/content";
 
-export const metadata: Metadata = {
-  title: "Trials | Mentor Sports International Academy",
+export const metadata: Metadata = createMetadata({
+  title: "Trials",
   description:
     "Book your academy trials for players aged 3–17. Register online today.",
-};
+  path: "/trials",
+  keywords: [
+    "football trials Uganda",
+    "academy trials Kampala",
+    "youth football registration Uganda",
+    "Mentor Sports trials",
+  ],
+});
 
 export default function TrialsPage() {
   return (

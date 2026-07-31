@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { createMetadata } from "@/lib/seo";
 import Link from "next/link";
 import PageHero from "@/components/PageHero";
 import TournamentSection from "@/components/TournamentSection";
@@ -6,11 +7,12 @@ import CarouselSection from "@/components/CarouselSection";
 import ScrollReveal from "@/components/ScrollReveal";
 import { academyImages } from "@/data/content";
 
-export const metadata: Metadata = {
-  title: "Tournaments | Mentor Sports International Academy",
+export const metadata: Metadata = createMetadata({
+  title: "Tournaments",
   description:
     "The Chipkizi Cup — East Africa's largest youth and grassroots football tournament.",
-};
+  path: "/tournaments",
+});
 
 const tournamentVideos = [
   {

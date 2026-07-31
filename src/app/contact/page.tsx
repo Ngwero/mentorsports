@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { createMetadata } from "@/lib/seo";
 import { Mail, Phone, MapPin } from "lucide-react";
 import PageHero from "@/components/PageHero";
 import ContactForm from "@/components/ContactForm";
@@ -7,10 +8,11 @@ import SocialLinks from "@/components/SocialLinks";
 import ScrollReveal from "@/components/ScrollReveal";
 import { siteConfig, academyImages, staffContacts } from "@/data/content";
 
-export const metadata: Metadata = {
-  title: "Contact | Mentor Sports International Academy",
+export const metadata: Metadata = createMetadata({
+  title: "Contact",
   description: "Get in touch with Mentor Sports International Academy in Kampala, Uganda.",
-};
+  path: "/contact",
+});
 
 export default function ContactPage() {
   return (

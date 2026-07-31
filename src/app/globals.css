@@ -3569,3 +3569,530 @@ body {
 .cookie-consent-accept {
   min-width: 6.5rem;
 }
+
+/* ── MSIA promotional popup ── */
+
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 260;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgba(11, 18, 32, 0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.35s ease, visibility 0.35s ease;
+}
+
+.popup-overlay-visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.popup-promo-card,
+.popup-registration-card {
+  position: relative;
+  width: min(100%, 32rem);
+  max-height: min(92vh, 52rem);
+  overflow: hidden auto;
+  border-radius: 1.5rem;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow:
+    0 32px 80px rgba(15, 23, 42, 0.28),
+    0 0 0 1px rgba(27, 79, 138, 0.06);
+  transform: scale(0.94) translateY(12px);
+  animation: popup-enter 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  -webkit-overflow-scrolling: touch;
+}
+
+.popup-registration-card {
+  width: min(100%, 36rem);
+  padding: 1.5rem 1.35rem 1.75rem;
+}
+
+@keyframes popup-enter {
+  to {
+    transform: scale(1) translateY(0);
+  }
+}
+
+.popup-promo-accent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(
+    90deg,
+    var(--ms-red) 0%,
+    var(--ms-blue) 45%,
+    var(--ms-gold) 100%
+  );
+}
+
+.popup-close {
+  position: absolute;
+  top: 0.85rem;
+  right: 0.85rem;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 9999px;
+  color: var(--ms-text-muted);
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid var(--ms-border);
+  transition: color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+  touch-action: manipulation;
+}
+
+.popup-close:hover {
+  color: var(--ms-red);
+  background: var(--ms-off-white);
+  transform: scale(1.05);
+}
+
+.popup-promo-body {
+  padding: 1.75rem 1.5rem 1.5rem;
+}
+
+.popup-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3rem 0.75rem;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ms-blue);
+  background: rgba(27, 79, 138, 0.08);
+  border: 1px solid rgba(27, 79, 138, 0.12);
+  border-radius: 9999px;
+}
+
+.popup-promo-title {
+  margin-top: 0.85rem;
+  font-size: clamp(1.35rem, 4.5vw, 1.75rem);
+  font-weight: 900;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  color: var(--ms-text);
+  text-wrap: balance;
+}
+
+.popup-promo-subtitle {
+  margin-top: 0.75rem;
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: var(--ms-text-muted);
+}
+
+.popup-highlight-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  margin-top: 1.1rem;
+  padding: 0.9rem 1rem;
+  border-radius: 1rem;
+  background: linear-gradient(
+    135deg,
+    rgba(27, 79, 138, 0.08) 0%,
+    rgba(232, 160, 64, 0.1) 100%
+  );
+  border: 1px solid rgba(27, 79, 138, 0.12);
+  backdrop-filter: blur(6px);
+}
+
+.popup-highlight-box p {
+  font-size: 0.875rem;
+  line-height: 1.55;
+  font-weight: 600;
+  color: var(--ms-blue-dark);
+}
+
+.popup-highlight-flag {
+  flex-shrink: 0;
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.popup-bullet-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.45rem;
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 480px) {
+  .popup-bullet-list {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem 0.75rem;
+  }
+}
+
+.popup-bullet-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--ms-text);
+}
+
+.popup-bullet-check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.15rem;
+  height: 1.15rem;
+  flex-shrink: 0;
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: white;
+  background: var(--ms-blue);
+  border-radius: 9999px;
+}
+
+.popup-promo-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  margin-top: 1.25rem;
+}
+
+@media (min-width: 480px) {
+  .popup-promo-actions {
+    flex-direction: row;
+  }
+}
+
+.popup-btn-primary,
+.popup-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  width: 100%;
+  min-height: 2.85rem;
+  padding: 0.75rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 800;
+  border-radius: 9999px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease,
+    color 0.2s ease, border-color 0.2s ease;
+  touch-action: manipulation;
+}
+
+.popup-btn-primary {
+  color: white;
+  background: linear-gradient(135deg, var(--ms-red) 0%, var(--ms-red-dark) 100%);
+  box-shadow: 0 10px 28px rgba(200, 16, 46, 0.28);
+}
+
+.popup-btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 32px rgba(200, 16, 46, 0.34);
+}
+
+.popup-btn-secondary {
+  color: var(--ms-blue);
+  background: rgba(255, 255, 255, 0.9);
+  border: 1.5px solid rgba(27, 79, 138, 0.22);
+}
+
+.popup-btn-secondary:hover {
+  background: rgba(27, 79, 138, 0.06);
+  border-color: rgba(27, 79, 138, 0.35);
+  transform: translateY(-1px);
+}
+
+.popup-dont-show {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--ms-border);
+  font-size: 0.8125rem;
+  color: var(--ms-text-muted);
+  cursor: pointer;
+  user-select: none;
+}
+
+.popup-dont-show input {
+  width: 1rem;
+  height: 1rem;
+  accent-color: var(--ms-blue);
+}
+
+.popup-registration-header {
+  padding-right: 2rem;
+  margin-bottom: 1.25rem;
+}
+
+.popup-registration-title {
+  margin-top: 0.65rem;
+  font-size: clamp(1.2rem, 4vw, 1.5rem);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.popup-registration-subtitle {
+  margin-top: 0.45rem;
+  font-size: 0.875rem;
+  color: var(--ms-text-muted);
+}
+
+.popup-registration-note {
+  margin-top: 0.65rem;
+  font-size: 0.78rem;
+  color: var(--ms-text-muted);
+  line-height: 1.5;
+}
+
+.popup-share {
+  margin-top: 1.15rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--ms-border);
+}
+
+.popup-registration-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.popup-registration-success {
+  padding: 1rem 0.5rem 0.25rem;
+  text-align: center;
+}
+
+/* ── MSIA homepage section ── */
+
+.msia-talent-section {
+  scroll-margin-top: 6rem;
+}
+
+.msia-talent-card {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(1.5rem, 4vw, 2.25rem);
+  border-radius: 1.5rem;
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.98) 0%,
+    rgba(248, 250, 252, 0.96) 100%
+  );
+  border: 1px solid var(--ms-border);
+  box-shadow: 0 24px 64px rgba(15, 23, 42, 0.08);
+}
+
+.msia-talent-accent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    var(--ms-blue) 0%,
+    var(--ms-gold) 50%,
+    var(--ms-red) 100%
+  );
+}
+
+.msia-talent-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 900px) {
+  .msia-talent-grid {
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 0.75fr);
+    gap: 2rem;
+    align-items: start;
+  }
+}
+
+.msia-talent-title {
+  margin-top: 0.85rem;
+  font-size: clamp(1.5rem, 4vw, 2.1rem);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1.12;
+}
+
+.msia-talent-subtitle {
+  margin-top: 0.75rem;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--ms-text-muted);
+  max-width: 40rem;
+}
+
+.msia-talent-highlight {
+  margin-top: 1.15rem;
+}
+
+.msia-talent-bullets {
+  margin-top: 1rem;
+}
+
+.msia-talent-actions {
+  margin-top: 1.35rem;
+}
+
+.msia-talent-actions .popup-btn-primary {
+  width: auto;
+  min-width: 12rem;
+}
+
+.msia-talent-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.msia-stat-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 0.9rem 1rem;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid var(--ms-border);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+}
+
+.msia-stat-label {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ms-text-muted);
+}
+
+.msia-stat-card strong {
+  font-size: 0.92rem;
+  font-weight: 800;
+  line-height: 1.35;
+  color: var(--ms-text);
+}
+
+.msia-talent-share {
+  margin-top: 1.35rem;
+}
+
+/* ── Share program (Uganda social) ── */
+
+.share-program-header {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ms-text-muted);
+}
+
+.share-program-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.65rem;
+}
+
+.share-program-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-height: 2.15rem;
+  padding: 0.4rem 0.75rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--ms-text);
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid var(--ms-border);
+  border-radius: 9999px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  touch-action: manipulation;
+}
+
+.share-program-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.08);
+}
+
+.share-program-btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  font-size: 0.62rem;
+  font-weight: 900;
+  border-radius: 9999px;
+  color: white;
+}
+
+.share-program-btn-whatsapp .share-program-btn-icon {
+  background: #25d366;
+}
+
+.share-program-btn-facebook .share-program-btn-icon {
+  background: #1877f2;
+}
+
+.share-program-btn-x .share-program-btn-icon {
+  background: #0f172a;
+}
+
+.share-program-btn-telegram .share-program-btn-icon {
+  background: #229ed9;
+}
+
+.share-program-btn-copy .share-program-btn-icon,
+.share-program-btn-native .share-program-btn-icon {
+  background: var(--ms-blue);
+  color: white;
+}
+
+.share-program-btn-whatsapp:hover {
+  border-color: rgba(37, 211, 102, 0.45);
+}
+
+.share-program-btn-facebook:hover {
+  border-color: rgba(24, 119, 242, 0.45);
+}
+
+.share-program-compact .share-program-buttons {
+  gap: 0.4rem;
+}
+
+.share-program-compact .share-program-btn {
+  padding: 0.35rem 0.65rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .popup-overlay,
+  .popup-promo-card,
+  .popup-registration-card {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+}

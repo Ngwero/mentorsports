@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
+import { createMetadata } from "@/lib/seo";
 import PageHero from "@/components/PageHero";
 import NewsGrid from "@/components/NewsGrid";
 import Newsletter from "@/components/Newsletter";
 import ScrollReveal from "@/components/ScrollReveal";
 import { academyImages } from "@/data/content";
 
-export const metadata: Metadata = {
-  title: "News | Mentor Sports International Academy",
+export const metadata: Metadata = createMetadata({
+  title: "News",
   description: "Latest news, updates, and stories from Mentor Sports International Academy.",
-};
+  path: "/news",
+});
 
 export default function NewsPage() {
   return (

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { createMetadata } from "@/lib/seo";
 import PageHero from "@/components/PageHero";
 import AboutSection from "@/components/AboutSection";
 import CoreValues from "@/components/CoreValues";
@@ -7,11 +8,12 @@ import PartnershipsSection from "@/components/PartnershipsSection";
 import ScrollReveal from "@/components/ScrollReveal";
 import { academyImages } from "@/data/content";
 
-export const metadata: Metadata = {
-  title: "About | Mentor Sports International Academy",
+export const metadata: Metadata = createMetadata({
+  title: "About",
   description:
     "Learn about Mentor Sports International Academy — Uganda's UYFA-registered youth football academy since 2008.",
-};
+  path: "/about",
+});
 
 export default function AboutPage() {
   return (

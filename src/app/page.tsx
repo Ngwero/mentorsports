@@ -1,3 +1,6 @@
+import type { Metadata } from "next";
+import { createMetadata } from "@/lib/seo";
+import { siteConfig } from "@/data/content";
 import HeroCarousel from "@/components/HeroCarousel";
 import MovingWords from "@/components/MovingWords";
 import NewsGrid from "@/components/NewsGrid";
@@ -8,9 +11,17 @@ import EventsSection from "@/components/EventsSection";
 import PricingSection from "@/components/PricingSection";
 import PartnershipsSection from "@/components/PartnershipsSection";
 import TrialsCTA from "@/components/TrialsCTA";
+import MsiaTalentSection from "@/components/MsiaTalentSection";
 import Newsletter from "@/components/Newsletter";
 import ScrollReveal from "@/components/ScrollReveal";
 import { programs, teams, videos } from "@/data/content";
+
+export const metadata: Metadata = createMetadata({
+  title: `${siteConfig.name} | ${siteConfig.tagline}`,
+  description:
+    "Mentor Sports International Academy — Uganda's UYFA-registered youth football academy. Professional training for ages 3–17, Chipkizi Cup, trials, and international pathways.",
+  path: "/",
+});
 
 export default function Home() {
   return (
@@ -41,6 +52,12 @@ export default function Home() {
 
       <ScrollReveal>
         <FacilitiesGrid />
+      </ScrollReveal>
+
+      <ScrollReveal delay={80}>
+        <section className="section-modern section-surface-alt">
+          <MsiaTalentSection />
+        </section>
       </ScrollReveal>
 
       <ScrollReveal>

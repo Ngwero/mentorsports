@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { createMetadata } from "@/lib/seo";
 import AcademyImage from "@/components/AcademyImage";
 import Link from "next/link";
 import PageHero from "@/components/PageHero";
@@ -7,11 +8,12 @@ import TrainingScheduleSection from "@/components/TrainingScheduleSection";
 import ScrollReveal from "@/components/ScrollReveal";
 import { programs, siteConfig, academyImages } from "@/data/content";
 
-export const metadata: Metadata = {
-  title: "Programs | Mentor Sports International Academy",
+export const metadata: Metadata = createMetadata({
+  title: "Programs",
   description:
     "Holiday programs, youth development, and academy trials for players aged 3–17.",
-};
+  path: "/programs",
+});
 
 export default function ProgramsPage() {
   return (

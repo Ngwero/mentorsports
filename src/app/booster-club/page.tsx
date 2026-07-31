@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { createMetadata } from "@/lib/seo";
 import BoosterClubHero from "@/components/booster/BoosterClubHero";
 import BoosterCampaigns from "@/components/booster/BoosterCampaigns";
 import DonationTiers from "@/components/booster/DonationTiers";
@@ -8,11 +9,12 @@ import BoosterUpdates from "@/components/booster/BoosterUpdates";
 import BoosterTrust from "@/components/booster/BoosterTrust";
 import ScrollReveal from "@/components/ScrollReveal";
 
-export const metadata: Metadata = {
-  title: "Booster Club | Mentor Sports International Academy",
+export const metadata: Metadata = createMetadata({
+  title: "Booster Club",
   description:
     "Support Mentor Sports academy campaigns — tournaments, equipment, travel, and player welfare. Donate via Mobile Money or card.",
-};
+  path: "/booster-club",
+});
 
 export default function BoosterClubPage() {
   return (

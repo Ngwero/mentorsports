@@ -5,8 +5,11 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FaqChatbot from "@/components/FaqChatbot";
 import CookieConsent from "@/components/CookieConsent";
+import PopupManager from "@/components/popup/PopupManager";
 import PageLoader from "@/components/PageLoader";
+import JsonLd from "@/components/JsonLd";
 import { siteConfig } from "@/data/content";
+import { createMetadata, defaultDescription, defaultKeywords, siteUrl } from "@/lib/seo";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
@@ -15,21 +18,34 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: `${siteConfig.name} | ${siteConfig.tagline}`,
-  description:
-    "Mentor Sports International Academy provides skills and age-appropriate football training for children ages 3-17 in Uganda. Registered by UYFA. Book your trials today.",
-  keywords: [
-    "football academy Uganda",
-    "youth football",
-    "Mentor Sports",
-    "Chipkizi Cup",
-    "UYFA",
-    "football trials Uganda",
-  ],
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: `${siteConfig.name} | ${siteConfig.tagline}`,
+    template: `%s | ${siteConfig.name}`,
+  },
+  description: defaultDescription,
+  keywords: defaultKeywords,
   icons: {
     icon: [{ url: "/logo.png", type: "image/png" }],
     apple: [{ url: "/logo.png", type: "image/png" }],
     shortcut: "/logo.png",
+  },
+  robots: { index: true, follow: true, googleBot: { index: true, follow: true } },
+  openGraph: {
+    type: "website",
+    locale: "en_UG",
+    siteName: siteConfig.name,
+    images: [
+      {
+        url: "/images/academy/16-academy-victory-banner.webp",
+        width: 1200,
+        height: 630,
+        alt: `${siteConfig.name} — youth football academy in Uganda`,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
   },
 };
 
@@ -40,6 +56,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <JsonLd />
+      </head>
       <body className={`${dmSans.variable} font-sans antialiased`}>
         <PageLoader />
         <Header />
@@ -47,6 +66,7 @@ export default function RootLayout({
         <Footer />
         <FaqChatbot />
         <CookieConsent />
+        <PopupManager />
       </body>
     </html>
   );

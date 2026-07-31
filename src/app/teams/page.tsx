@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { createMetadata } from "@/lib/seo";
 import AcademyImage from "@/components/AcademyImage";
 import Link from "next/link";
 import PageHero from "@/components/PageHero";
@@ -6,11 +7,12 @@ import CarouselSection from "@/components/CarouselSection";
 import ScrollReveal from "@/components/ScrollReveal";
 import { teams, videos, academyImages } from "@/data/content";
 
-export const metadata: Metadata = {
-  title: "Teams | Mentor Sports International Academy",
+export const metadata: Metadata = createMetadata({
+  title: "Teams",
   description:
     "Explore our age-group squads from Under 11 through to the Women's Academy.",
-};
+  path: "/teams",
+});
 
 export default function TeamsPage() {
   return (

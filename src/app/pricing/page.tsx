@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
+import { createMetadata } from "@/lib/seo";
 import PageHero from "@/components/PageHero";
 import PricingSection from "@/components/PricingSection";
 import ScrollReveal from "@/components/ScrollReveal";
 import { academyImages } from "@/data/content";
 
-export const metadata: Metadata = {
-  title: "Pricing | Mentor Sports International Academy",
+export const metadata: Metadata = createMetadata({
+  title: "Pricing",
   description:
     "Academy membership fees — UGX 350,000 local, USD 100 international, UGX 20,000 per training session.",
-};
+  path: "/pricing",
+});
 
 export default function PricingPage() {
   return (

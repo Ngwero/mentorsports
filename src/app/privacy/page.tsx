@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
+import { createMetadata } from "@/lib/seo";
 import Link from "next/link";
 import PageHero from "@/components/PageHero";
 import ScrollReveal from "@/components/ScrollReveal";
 import { academyImages, siteConfig } from "@/data/content";
 
-export const metadata: Metadata = {
-  title: "Privacy Policy | Mentor Sports International Academy",
+export const metadata: Metadata = createMetadata({
+  title: "Privacy Policy",
   description:
     "How Mentor Sports International Academy collects, uses, and protects your personal information.",
-};
+  path: "/privacy",
+});
 
 const sections = [
   {
