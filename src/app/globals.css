@@ -855,8 +855,10 @@ body {
 .hero-hub-fees-card {
   position: absolute;
   z-index: 4;
-  left: clamp(1rem, 3vw, 2rem);
-  bottom: clamp(4.5rem, 10vw, 5.5rem);
+  top: clamp(1rem, 3vw, 2rem);
+  right: clamp(1rem, 3vw, 2rem);
+  left: auto;
+  bottom: auto;
   width: min(100% - 2rem, 19rem);
   padding: 1.1rem 1.15rem;
   border-radius: 1.25rem;
@@ -1123,19 +1125,6 @@ body {
 
   .hero-hub-fees-card-expanded .hero-hub-fees-desktop {
     display: block;
-  }
-
-  /* Stack cards vertically on medium screens when both overlap */
-  @media (max-width: 1100px) {
-    .hero-hub-fees-card {
-      bottom: auto;
-      top: clamp(1rem, 3vw, 2rem);
-      left: clamp(1rem, 3vw, 2rem);
-    }
-
-    .hero-hub-event-card {
-      bottom: clamp(1rem, 3vw, 2rem);
-    }
   }
 }
 
