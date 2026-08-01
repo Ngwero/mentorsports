@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { ArrowUpRight, CalendarDays, CreditCard, MapPin } from "lucide-react";
+import { ArrowUpRight, CalendarDays, ChevronDown, ChevronUp, CreditCard, MapPin } from "lucide-react";
 import { academyPayment, heroCarouselSlides, heroSection, upcomingEvents } from "@/data/content";
 import PaymentLink from "@/components/PaymentLink";
 
@@ -10,6 +10,7 @@ const SLIDE_INTERVAL_MS = 6000;
 
 export default function HeroCarousel() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [feesExpanded, setFeesExpanded] = useState(false);
   const pausedRef = useRef(false);
   const slideCount = heroCarouselSlides.length;
   const slide = heroCarouselSlides[activeIndex];
@@ -147,11 +148,12 @@ export default function HeroCarousel() {
             </div>
           </aside>
 
-          <aside className="hero-hub-fees-card">
-            <PaymentLink
-              href={academyPayment.url}
-              className="hero-hub-fees-compact"
-            >
+          <aside
+            className={`hero-hub-fees-card ${
+              feesExpanded ? "hero-hub-fees-card-expanded" : "hero-hub-fees-card-collapsed"
+            }`}
+          >
+            <PaymentLink href={academyPayment.url} className="hero-hub-fees-compact hero-hub-fees-compact-mobile">
               <CreditCard className="hero-hub-fees-compact-icon" size={16} aria-hidden />
               <span className="hero-hub-fees-compact-eyebrow">Pay fees</span>
               <span className="hero-hub-fees-compact-title">
@@ -161,10 +163,36 @@ export default function HeroCarousel() {
               <ArrowUpRight className="hero-hub-fees-compact-arrow" size={16} aria-hidden />
             </PaymentLink>
 
-            <div className="hero-hub-fees-desktop">
+            <button
+              type="button"
+              className="hero-hub-fees-compact hero-hub-fees-toggle"
+              onClick={() => setFeesExpanded(true)}
+              aria-expanded={feesExpanded}
+              aria-controls="hero-hub-fees-panel"
+            >
+              <CreditCard className="hero-hub-fees-compact-icon" size={16} aria-hidden />
+              <span className="hero-hub-fees-compact-eyebrow">Pay fees</span>
+              <span className="hero-hub-fees-compact-title">
+                {academyPayment.onboarding.localAmount} onboarding ·{" "}
+                {academyPayment.training.amount} / session
+              </span>
+              <ChevronDown className="hero-hub-fees-compact-chevron" size={16} aria-hidden />
+            </button>
+
+            <div id="hero-hub-fees-panel" className="hero-hub-fees-desktop">
               <div className="hero-hub-fees-header">
                 <span className="hero-hub-fees-label">Academy fees</span>
-                <span className="hero-hub-fees-pill">RukaPay</span>
+                <div className="hero-hub-fees-header-actions">
+                  <span className="hero-hub-fees-pill">RukaPay</span>
+                  <button
+                    type="button"
+                    className="hero-hub-fees-collapse"
+                    onClick={() => setFeesExpanded(false)}
+                    aria-label="Collapse fees card"
+                  >
+                    <ChevronUp size={16} />
+                  </button>
+                </div>
               </div>
               <h2 className="hero-hub-fees-title">Pay onboarding & training fees</h2>
               <ul className="hero-hub-fees-list">

@@ -871,8 +871,48 @@ body {
   display: none;
 }
 
+.hero-hub-fees-toggle {
+  display: none;
+}
+
+.hero-hub-fees-compact-mobile {
+  display: none;
+}
+
 .hero-hub-fees-desktop {
-  display: block;
+  display: none;
+}
+
+.hero-hub-fees-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.hero-hub-fees-collapse {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.65rem;
+  height: 1.65rem;
+  border-radius: 9999px;
+  color: var(--ms-text-muted);
+  background: rgba(15, 23, 42, 0.06);
+  border: 1px solid var(--ms-border);
+  transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+  touch-action: manipulation;
+}
+
+.hero-hub-fees-collapse:hover {
+  color: var(--ms-blue);
+  background: rgba(27, 79, 138, 0.08);
+  border-color: rgba(27, 79, 138, 0.2);
+}
+
+.hero-hub-fees-compact-chevron {
+  flex-shrink: 0;
+  color: var(--ms-red);
+  transition: transform 0.25s ease;
 }
 
 .hero-hub-fees-header {
@@ -992,6 +1032,14 @@ body {
     transition: background 0.2s ease;
   }
 
+  .hero-hub-fees-compact-mobile {
+    display: flex;
+  }
+
+  .hero-hub-fees-toggle {
+    display: none;
+  }
+
   .hero-hub-fees-compact:hover {
     background: var(--ms-off-white);
   }
@@ -1036,6 +1084,45 @@ body {
 @media (min-width: 768px) {
   .hero-hub-fees-card {
     position: absolute;
+    transition: width 0.3s ease, padding 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .hero-hub-fees-card-collapsed {
+    width: min(100% - 2rem, 17.5rem);
+    padding: 0.65rem 0.85rem;
+  }
+
+  .hero-hub-fees-card-expanded {
+    width: min(100% - 2rem, 19rem);
+    padding: 1.1rem 1.15rem;
+  }
+
+  .hero-hub-fees-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    width: 100%;
+    min-width: 0;
+    padding: 0;
+    color: inherit;
+    text-align: left;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .hero-hub-fees-toggle:hover .hero-hub-fees-compact-title {
+    color: var(--ms-blue);
+  }
+
+  .hero-hub-fees-card-expanded .hero-hub-fees-toggle {
+    display: none;
+  }
+
+  .hero-hub-fees-card-expanded .hero-hub-fees-desktop {
+    display: block;
   }
 
   /* Stack cards vertically on medium screens when both overlap */
