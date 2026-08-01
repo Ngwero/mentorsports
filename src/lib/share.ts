@@ -81,7 +81,7 @@ export function formatTalentRegistrationEmailBody(data: TalentRegistrationPayloa
     `Age: ${data.age}`,
     `Gender: ${data.gender}`,
     `Position: ${data.position}`,
-    `Current Club / Academy: ${data.club}`,
+    `Current Academy or School Team: ${data.club}`,
     `How they heard about us: ${data.referral}`,
     "",
     "Additional Information:",

@@ -70,7 +70,7 @@ export async function POST(request: Request) {
           Age: payload.age,
           Gender: payload.gender,
           Position: payload.position,
-          "Current Club / Academy": payload.club,
+          "Current Academy or School Team": payload.club,
           Referral: payload.referral,
           "Additional Information": payload.message || "—",
           _replyto: payload.email,

@@ -259,7 +259,7 @@ export default function TalentRegistrationModal({ open, onClose }: TalentRegistr
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className={labelClass}>Current Club / Academy</label>
+                  <label className={labelClass}>Current Academy or School Team</label>
                   <input
                     type="text"
                     required
